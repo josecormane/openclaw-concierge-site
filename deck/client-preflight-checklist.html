@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Checklist — OpenClaw Concierge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=Jersey+10&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0c0c0c;
+      color: #e0e0e0;
+      font-family: 'Rubik', sans-serif;
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+    .container { max-width: 780px; margin: 0 auto; }
+    .header { margin-bottom: 48px; }
+    .kicker { font-family: 'Jersey 10', monospace; letter-spacing: 0.2em; font-size: 0.78rem; color: #555; }
+    h1 { font-family: 'Anton', sans-serif; font-size: 3.5rem; text-transform: uppercase; color: #fff; line-height: 1; margin: 8px 0 16px; }
+    .subtitle { color: #888; font-size: 1rem; line-height: 1.6; max-width: 560px; }
+
+    .phase { margin-bottom: 40px; }
+    .phase-header {
+      display: flex; align-items: center; gap: 12px;
+      border-bottom: 2px solid #1e1e1e;
+      padding-bottom: 10px; margin-bottom: 16px;
+    }
+    .phase-num {
+      font-family: 'Jersey 10', monospace; font-size: 0.75rem;
+      color: #444; letter-spacing: 0.2em;
+    }
+    .phase-title {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: #fff;
+    }
+    .phase-badge {
+      margin-left: auto;
+      font-family: 'Jersey 10', monospace; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 3px 10px; border-radius: 999px;
+      border: 1px solid #2a2a2a; color: #555;
+    }
+    .phase-badge.required { border-color: rgba(173,252,64,0.3); color: #ADFC40; }
+
+    .item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #1a1a1a;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .item:last-child { border-bottom: none; }
+    .item.done { opacity: 0.45; }
+    .item.done .item-label { text-decoration: line-through; text-decoration-color: #555; }
+
+    .checkbox {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 2px solid #333; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s; margin-top: 1px;
+    }
+    .item.done .checkbox { background: #ADFC40; border-color: #ADFC40; }
+    .checkmark { display: none; font-size: 0.8rem; color: #000; font-weight: bold; }
+    .item.done .checkmark { display: block; }
+
+    .item-content { flex: 1; }
+    .item-label {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+      font-size: 0.95rem; color: #e0e0e0; margin-bottom: 3px;
+    }
+    .item-desc { font-size: 0.82rem; color: #666; line-height: 1.5; }
+    .item-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 6px;
+      background: rgba(173,252,64,0.07); border: 1px solid rgba(173,252,64,0.2);
+      color: #ADFC40; font-family: 'Jersey 10', monospace; font-size: 0.72rem;
+      letter-spacing: 0.1em; padding: 3px 10px; border-radius: 999px;
+      text-decoration: none;
+    }
+    .item-link:hover { background: rgba(173,252,64,0.14); }
+
+    .progress-bar-wrap {
+      background: #1a1a1a; border-radius: 4px; height: 6px;
+      margin: 32px 0; overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%; background: #ADFC40;
+      border-radius: 4px; width: 0%;
+      transition: width 0.3s ease;
+    }
+    .progress-label {
+      font-family: 'Jersey 10', monospace; font-size: 0.75rem;
+      letter-spacing: 0.15em; color: #555; margin-bottom: 6px;
+    }
+    .progress-count { color: #ADFC40; }
+
+    .footer {
+      margin-top: 48px; padding-top: 24px;
+      border-top: 1px solid #1a1a1a;
+      font-size: 0.8rem; color: #444; line-height: 1.6;
+    }
+
+    @media print {
+      body { background: #fff; color: #111; padding: 24px; }
+      .checkbox { border-color: #999; }
+      .item-link { display: none; }
+      .progress-bar-wrap, .progress-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <p class="kicker">OPENCLAW CONCIERGE</p>
+    <h1>Client Setup<br/>Checklist</h1>
+    <p class="subtitle">Work through these items before your setup session. Check each one off as you complete it — your progress is saved automatically in this browser.</p>
+  </div>
+
+  <div class="progress-label">PREFLIGHT PROGRESS — <span class="progress-count" id="prog-count">0 of 8</span> items ready</div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar"></div></div>
+
+  <!-- PHASE 1: MACHINE -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 01</span>
+      <span class="phase-title">Machine & Access</span>
+      <span class="phase-badge required">REQUIRED</span>
+    </div>
+
+    <div class="item" data-id="mac-updated" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Mac mini is updated to the latest macOS</p>
+        <p class="item-desc">Apple menu → System Settings → General → Software Update → install any pending updates.</p>
+      </div>
+    </div>
+
+    <div class="item" data-id="admin-access" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Administrator access confirmed</p>
+        <p class="item-desc">You or your contact person can enter the system password and approve software installations during setup.</p>
+      </div>
+    </div>
+
+    <div class="item" data-id="remote-ok" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Remote support approved</p>
+        <p class="item-desc">You've confirmed that we can install Tailscale on your Mac mini to connect remotely during and after the session.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 1: ACCOUNTS -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 01</span>
+      <span class="phase-title">Accounts & Credentials</span>
+      <span class="phase-badge required">REQUIRED</span>
+    </div>
+
+    <div class="item" data-id="agent-email" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Dedicated email created for the agent</p>
+        <p class="item-desc">A new Gmail address used only for the agent environment — not your personal email.</p>
+        <a href="https://accounts.google.com/signup" target="_blank" class="item-link">↗ Create Gmail Account</a>
+      </div>
+    </div>
+
+    <div class="item" data-id="tailscale-account" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Tailscale account created with the agent email</p>
+        <p class="item-desc">Sign up at tailscale.com using the new dedicated agent email.</p>
+        <a href="https://login.tailscale.com/start" target="_blank" class="item-link">↗ Create Tailscale Account</a>
+      </div>
+    </div>
+
+    <div class="item" data-id="openai-account" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">OpenAI account ready</p>
+        <p class="item-desc">You can log in to platform.openai.com. Your existing account works — or create a new one.</p>
+        <a href="https://platform.openai.com/signup" target="_blank" class="item-link">↗ OpenAI Platform</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 1: TELEGRAM -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 01</span>
+      <span class="phase-title">Telegram Bot</span>
+      <span class="phase-badge required">REQUIRED</span>
+    </div>
+
+    <div class="item" data-id="bot-created" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Telegram bot created via @BotFather</p>
+        <p class="item-desc">Open Telegram → search @BotFather → send /newbot → follow the steps. Choose a name and a username for your bot.</p>
+        <a href="https://t.me/BotFather" target="_blank" class="item-link">↗ Open BotFather</a>
+      </div>
+    </div>
+
+    <div class="item" data-id="token-saved" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">Bot token saved securely</p>
+        <p class="item-desc">BotFather shows you a token like <code style="color:#ADFC40; font-size:0.75rem;">1234567890:ABCDEFghijklmn</code>. Keep it in a safe place. Do not share it publicly. You'll hand it to us during setup.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4: DISCOVERY PREP -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 04</span>
+      <span class="phase-title">Discovery Preparation</span>
+      <span class="phase-badge">RECOMMENDED</span>
+    </div>
+
+    <div class="item" data-id="work-reflection" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">You've thought about how you currently work</p>
+        <p class="item-desc">Think about: What tools do you use daily? What tasks repeat? Where do things fall through the cracks? You don't need answers — just thinking ahead makes the Discovery conversation faster.</p>
+      </div>
+    </div>
+
+    <div class="item" data-id="first-win" onclick="toggle(this)">
+      <div class="checkbox"><span class="checkmark">✓</span></div>
+      <div class="item-content">
+        <p class="item-label">You have a sense of what a first win looks like</p>
+        <p class="item-desc">If the agent could do one thing in the first week that would make you say "this was worth it" — what would that be? Even a rough idea helps.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Your checkboxes are saved in this browser. Print this page or export the PDF to keep a record. · OpenClaw Concierge Setup · <span id="year"></span></p>
+  </div>
+
+</div>
+<script>
+  // Restore saved state
+  document.querySelectorAll('.item').forEach(item => {
+    const id = item.dataset.id;
+    if (localStorage.getItem('oc_check_' + id) === '1') {
+      item.classList.add('done');
+    }
+  });
+
+  function toggle(el) {
+    const id = el.dataset.id;
+    el.classList.toggle('done');
+    localStorage.setItem('oc_check_' + id, el.classList.contains('done') ? '1' : '0');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.item').length;
+    const done = document.querySelectorAll('.item.done').length;
+    document.getElementById('prog-bar').style.width = (done / all * 100) + '%';
+    document.getElementById('prog-count').textContent = done + ' of ' + all;
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  updateProgress();
+</script>
+</body>
+</html>
