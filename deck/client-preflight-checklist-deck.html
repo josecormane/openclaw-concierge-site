@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup & Onboarding — OpenClaw Concierge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=Jersey+10&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#111111',
+            darker: '#0a0a0a',
+            surface: '#1a1a1a',
+            neon: '#ADFC40',
+            teal: '#086274',
+            turq: '#1BD3B1',
+          },
+          fontFamily: {
+            anton: ['Anton', 'sans-serif'],
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            jersey: ['Jersey 10', 'monospace'],
+            rubik: ['Rubik', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body { margin: 0; background: #0a0a0a; color: #e0e0e0; }
+    .slide { min-height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; }
+    .glow-dot { width: 14px; height: 14px; border-radius: 9999px; background: #ADFC40; animation: glow-pulse 2s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 4px rgba(173,252,64,0.6); }
+      50% { box-shadow: 0 0 18px rgba(173,252,64,1); }
+    }
+    .kicker { font-family: 'Jersey 10', monospace; letter-spacing: 0.2em; font-size: 0.8rem; }
+    .card { border: 2px solid #2a2a2a; background: #161616; border-radius: 4px; }
+    .card-neon { border-color: #ADFC40; }
+    .card-teal { border-color: #086274; }
+    .card-turq { border-color: #1BD3B1; }
+    .row { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; border-bottom: 1px solid #222; }
+    .row:last-child { border-bottom: none; }
+    .mark { color: #ADFC40; font-family: 'Jersey 10', monospace; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+    .link-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(173,252,64,0.07); border: 1px solid rgba(173,252,64,0.2);
+      color: #ADFC40; font-family: 'Jersey 10', monospace; font-size: 0.78rem;
+      letter-spacing: 0.1em; padding: 4px 12px; border-radius: 999px;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .link-pill:hover { background: rgba(173,252,64,0.15); }
+    .phase-tag {
+      font-family: 'Jersey 10', monospace; letter-spacing: 0.2em; font-size: 0.75rem;
+      color: #555; margin-bottom: 6px;
+    }
+    .scroll-hint { position: absolute; bottom: 28px; font-family: 'Jersey 10', monospace; color: #333; font-size: 0.75rem; letter-spacing: 0.2em; }
+    .top-line { position: absolute; top: 0; left: 0; width: 100%; height: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ COVER -->
+<section class="slide items-center bg-darker px-8 relative overflow-hidden text-center">
+  <div class="top-line bg-neon"></div>
+  <p class="kicker text-neon mb-6">OPENCLAW CONCIERGE // SETUP GUIDE</p>
+  <h1 class="font-anton text-7xl md:text-9xl text-white uppercase leading-none mb-6">
+    Setup &<br/>Onboarding
+  </h1>
+  <p class="font-rubik text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+    Everything you need to know and prepare before, during, and after your OpenClaw setup day.
+  </p>
+  <div class="flex items-center justify-center gap-3">
+    <div class="glow-dot"></div>
+    <span class="font-jersey text-neon text-lg tracking-wider">6 PHASES · ZERO GUESSWORK</span>
+  </div>
+  <p class="scroll-hint">SCROLL TO START ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 1 — OVERVIEW -->
+<section class="slide bg-dark px-8 py-16 relative overflow-hidden">
+  <div class="top-line" style="background: #ADFC40;"></div>
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 01 of 06</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white uppercase leading-none mb-4">Preflight</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed">
+      Before your setup session begins, we need a few things in place. None of these are complicated — but without them, the installation cannot move forward.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="card p-6 flex flex-col gap-3">
+        <p class="kicker text-gray-500">MACHINE</p>
+        <p class="font-grotesk text-3xl text-white font-bold">Your Mac mini</p>
+        <p class="font-rubik text-gray-400 leading-relaxed">Powered on, up to date, and with admin access available on setup day.</p>
+      </div>
+      <div class="card p-6 flex flex-col gap-3">
+        <p class="kicker text-gray-500">ACCOUNTS</p>
+        <p class="font-grotesk text-3xl text-white font-bold">3 credentials</p>
+        <p class="font-rubik text-gray-400 leading-relaxed">One email, one OpenAI account, and one Tailscale account. All explained in the next slides.</p>
+      </div>
+      <div class="card card-neon p-6 flex flex-col gap-3">
+        <p class="kicker text-neon">TELEGRAM</p>
+        <p class="font-grotesk text-3xl text-white font-bold">Your bot + token</p>
+        <p class="font-rubik text-gray-400 leading-relaxed">A bot created in Telegram and its access token. Step-by-step on the next slide.</p>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 1 — MACHINE & ACCOUNTS -->
+<section class="slide bg-darker px-8 py-16 relative overflow-hidden">
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 01 · MACHINE & ACCOUNTS</p>
+    <h2 class="font-anton text-5xl md:text-6xl text-white uppercase leading-none mb-10">What We Need From You</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="card card-neon p-0 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-800">
+          <p class="kicker text-neon">YOUR MAC MINI</p>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Administrator access</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">You or someone on your team must be able to approve installations and enter the system password during setup.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">macOS up to date</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">Apple menu → System Settings → General → Software Update. Install any pending updates before the session.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Remote support approved</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">We use <strong class="text-white">Tailscale</strong> to connect remotely. Your confirmation allows us to install it during setup without delays.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-5">
+
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">DEDICATED EMAIL</p>
+          <p class="font-grotesk text-white text-xl font-bold mb-2">A new email for the agent</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed mb-4">This is the identity your agent will use to operate — not your personal address. A new Gmail account works perfectly.</p>
+          <a href="https://accounts.google.com/signup" target="_blank" class="link-pill">↗ CREATE GMAIL ACCOUNT</a>
+        </div>
+
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">TAILSCALE ACCOUNT</p>
+          <p class="font-grotesk text-white text-xl font-bold mb-2">Sign up with the agent email</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed mb-4">Create the Tailscale account using the new dedicated email. This links remote access to the agent's identity — not yours.</p>
+          <a href="https://login.tailscale.com/start" target="_blank" class="link-pill">↗ CREATE TAILSCALE ACCOUNT</a>
+        </div>
+
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">OPENAI ACCOUNT</p>
+          <p class="font-grotesk text-white text-xl font-bold mb-2">Your existing or new account</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed mb-4">We use OpenAI as the primary model. You just need to be able to log in on setup day — billing stays in your control.</p>
+          <a href="https://platform.openai.com/signup" target="_blank" class="link-pill">↗ OPENAI PLATFORM</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 1 — TELEGRAM BOT -->
+<section class="slide bg-dark px-8 py-16 relative overflow-hidden">
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 01 · TELEGRAM</p>
+    <h2 class="font-anton text-5xl md:text-6xl text-white uppercase leading-none mb-4">Your Telegram Bot</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+      Telegram is how you talk to your agent. Before setup day, you need to create a bot and keep its token somewhere safe — that's the only piece we need from you.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card card-neon p-0 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-800 flex items-center gap-3">
+          <p class="kicker text-neon">HOW TO CREATE YOUR BOT</p>
+        </div>
+        <div class="row">
+          <span class="mark text-2xl font-bold" style="color:#ADFC40; font-family: 'Anton', sans-serif; margin-top:0;">1</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Open Telegram and go to <span class="text-neon">@BotFather</span></p>
+            <p class="font-rubik text-gray-400 text-sm">Search for @BotFather in the Telegram search bar and open that chat.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark text-2xl font-bold" style="color:#ADFC40; font-family: 'Anton', sans-serif; margin-top:0;">2</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Send the command <span class="text-neon">/newbot</span></p>
+            <p class="font-rubik text-gray-400 text-sm">Follow the prompts. You'll choose a name and a username for your bot.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark text-2xl font-bold" style="color:#ADFC40; font-family: 'Anton', sans-serif; margin-top:0;">3</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Copy the token BotFather gives you</p>
+            <p class="font-rubik text-gray-400 text-sm">It looks like <code class="text-turq bg-gray-800 px-1.5 py-0.5 rounded text-xs">1234567890:ABCDEFghijklmnop</code>. Save it somewhere safe — you'll hand it to us on setup day.</p>
+          </div>
+        </div>
+        <div class="px-6 pt-4 pb-5">
+          <a href="https://t.me/BotFather" target="_blank" class="link-pill">↗ OPEN BOTFATHER ON TELEGRAM</a>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-5">
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">WHAT IS THIS TOKEN FOR?</p>
+          <p class="font-grotesk text-white text-xl font-bold mb-2">It connects the agent to Telegram</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed">The token is the "key" that authorizes your agent to send and receive messages through your bot. Without it, the gateway between OpenClaw and Telegram cannot be activated.</p>
+        </div>
+        <div class="card p-6" style="border-color: #333;  background: rgba(173,252,64,0.04);">
+          <p class="kicker text-neon mb-2">IMPORTANT</p>
+          <p class="font-rubik text-gray-300 text-sm leading-relaxed">Keep the token private. Do not share it in public channels or screenshots. Send it to us only through a secure method during setup day.</p>
+        </div>
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">WHAT ABOUT THE FORUM?</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed">You <strong class="text-white">do not</strong> need to create any Telegram groups, forums, or topics before setup day. We create everything together after we know how you want to operate. The only thing you need is: <strong class="text-white">bot created + token saved.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 2 — BASELINE INSTALL -->
+<section class="slide bg-darker px-8 py-16 relative overflow-hidden">
+  <div class="top-line" style="background: #086274;"></div>
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 02 of 06</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white uppercase leading-none mb-4">Baseline Install</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+      This is what we do. You just need to be available and ready to approve system prompts.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="card card-teal p-6">
+        <p class="kicker mb-4" style="color:#1BD3B1;">WHAT GETS INSTALLED</p>
+        <div class="space-y-5">
+          <div>
+            <p class="font-grotesk text-white text-lg font-bold mb-1">OpenClaw + Concierge</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">The core system that lets your agent think, remember, and act. Lives entirely on your Mac mini.</p>
+          </div>
+          <div>
+            <p class="font-grotesk text-white text-lg font-bold mb-1">Dedicated Agent Browser</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">A browser with a separate profile used only by the agent. Operational accounts stay logged in there — keeps sessions clean and separate from yours.</p>
+          </div>
+          <div>
+            <p class="font-grotesk text-white text-lg font-bold mb-1">Mission Control Dashboard</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">A local dashboard where you can see what your agent is doing, what's running, and what's coming next.</p>
+          </div>
+          <div>
+            <p class="font-grotesk text-white text-lg font-bold mb-1">Tailscale + Remote Access</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">Secure remote connection for ongoing support. You can revoke it at any time from your Tailscale account.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5">
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">WHAT YOU DON'T NEED TO DO</p>
+          <ul class="space-y-3 font-rubik text-gray-400 text-sm leading-relaxed">
+            <li class="flex gap-2"><span class="text-gray-600 mt-0.5">✕</span> Install any software manually</li>
+            <li class="flex gap-2"><span class="text-gray-600 mt-0.5">✕</span> Configure any files or settings</li>
+            <li class="flex gap-2"><span class="text-gray-600 mt-0.5">✕</span> Set up Telegram groups or forums yet</li>
+            <li class="flex gap-2"><span class="text-gray-600 mt-0.5">✕</span> Know how the system works under the hood</li>
+          </ul>
+        </div>
+        <div class="card p-8 flex flex-col justify-center items-center text-center" style="border-color:#1BD3B1; background: rgba(27,211,177,0.04); flex:1;">
+          <p class="font-grotesk text-white text-2xl font-bold mb-3">By the end of this phase,<br/>your agent is alive.</p>
+          <p class="font-rubik text-gray-400 text-sm">The system runs. The bot responds. Everything is connected and ready for the next step.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 3 — VALIDATION -->
+<section class="slide bg-dark px-8 py-16 relative overflow-hidden">
+  <div class="top-line bg-neon"></div>
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 03 of 06</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white uppercase leading-none mb-4">First Contact</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+      The simplest phase. We confirm the agent is connected and responding via Telegram.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="card card-neon p-6">
+        <p class="font-anton text-6xl text-neon mb-4">01</p>
+        <p class="font-grotesk text-white text-xl font-bold mb-2">Send a message to your bot</p>
+        <p class="font-rubik text-gray-400 text-sm leading-relaxed">Open Telegram, find the bot you created, and send any message. Your agent should respond.</p>
+      </div>
+      <div class="card p-6">
+        <p class="font-anton text-6xl text-gray-600 mb-4">02</p>
+        <p class="font-grotesk text-white text-xl font-bold mb-2">Confirm it feels right</p>
+        <p class="font-rubik text-gray-400 text-sm leading-relaxed">We'll tune the first response together. This is the moment to verify the tone and personality are correct.</p>
+      </div>
+      <div class="card p-6">
+        <p class="font-anton text-6xl text-gray-600 mb-4">03</p>
+        <p class="font-grotesk text-white text-xl font-bold mb-2">This channel stays available</p>
+        <p class="font-rubik text-gray-400 text-sm leading-relaxed">Direct messages to the bot remain as a support and quick-access channel throughout the life of the system.</p>
+      </div>
+    </div>
+    <div class="mt-8 card p-6" style="border-color:#333; background: rgba(255,255,255,0.02);">
+      <p class="font-rubik text-gray-400 text-sm leading-relaxed max-w-3xl">
+        <strong class="text-white">This is also when the Discovery conversation begins.</strong> Now that your agent is live, we start a structured conversation to understand how you work, what you need, and what your agent should focus on first.
+      </p>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 4 — DISCOVERY -->
+<section class="slide bg-darker px-8 py-16 relative overflow-hidden">
+  <div class="top-line" style="background: #1BD3B1;"></div>
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 04 of 06</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white uppercase leading-none mb-4">Discovery</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+      A structured conversation between you and your agent. It gathers what it needs to understand how to serve you — and decides together what areas to activate first.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card p-0 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-800">
+          <p class="kicker" style="color:#1BD3B1;">WHAT THE AGENT ASKS ABOUT</p>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-base mb-1">How do you currently work?</p>
+            <p class="font-rubik text-gray-400 text-sm">Your tools, rhythms, communication habits, and where friction usually shows up.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-base mb-1">What takes too much of your time?</p>
+            <p class="font-rubik text-gray-400 text-sm">Tasks that feel repetitive, manual, or that regularly fall through the cracks.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-base mb-1">What would a first win look like?</p>
+            <p class="font-rubik text-gray-400 text-sm">A concrete result in the first week that would make you say: <em>"okay, this was worth it."</em></p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-base mb-1">What are your active operating areas?</p>
+            <p class="font-rubik text-gray-400 text-sm">Projects, clients, teams, or responsibilities that need real attention — not just ideas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5">
+        <div class="card p-6" style="border-color:#1BD3B1; background: rgba(27,211,177,0.04);">
+          <p class="kicker mb-3" style="color:#1BD3B1;">OUTPUT OF THIS PHASE</p>
+          <p class="font-grotesk text-white text-xl font-bold mb-2">A clear list of Fronts</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed">By the end of this conversation, we know exactly which areas of your life or work deserve their own dedicated space in the system. These become your first operating Fronts.</p>
+        </div>
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">IMPORTANT</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed">
+            We do <strong class="text-white">not</strong> create Telegram groups or topics before this conversation. The structure only makes sense after we know what needs to exist.
+          </p>
+        </div>
+        <div class="card p-6">
+          <p class="kicker text-gray-500 mb-3">HOW LONG?</p>
+          <p class="font-rubik text-gray-400 text-sm leading-relaxed">Approximately 20–40 minutes of honest conversation. Your agent guides the whole thing — you just answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 5 — STRUCTURE -->
+<section class="slide bg-dark px-8 py-16 relative overflow-hidden">
+  <div class="top-line bg-neon"></div>
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 05 of 06</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white uppercase leading-none mb-4">Operational Structure</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+      Now we build the actual structure. This only happens after Discovery — because it's shaped entirely by what you told us.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card card-neon p-0 overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-800">
+          <p class="kicker text-neon">WE CREATE TOGETHER</p>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Your Telegram Forum Group</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">A private supergroup set up as a forum — this is where all real agent operations will happen.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">Mission Control Topic</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">A dedicated thread called <code class="text-neon bg-gray-800 px-1.5 py-0.5 rounded text-xs">00-mission-control</code> for coordination, intake, and priorities.</p>
+          </div>
+        </div>
+        <div class="row">
+          <span class="mark">[→]</span>
+          <div>
+            <p class="font-grotesk text-white font-semibold text-lg mb-1">One Topic per Front</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">Each operating area identified in Discovery gets its own thread. Each one is isolated, focused, and fully linked to a workspace folder.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card p-8 flex flex-col justify-between gap-6">
+        <div>
+          <p class="kicker text-gray-500 mb-3">THE RULE THAT MAKES IT WORK</p>
+          <p class="font-anton text-4xl text-white mb-4">One Topic<br/>= One Front</p>
+          <p class="font-rubik text-gray-400 leading-relaxed">Each thread in Telegram maps to a folder in the workspace. That's what keeps memory, context, and outputs clean — even months from now.</p>
+        </div>
+        <div style="border-top: 1px solid #2a2a2a; padding-top: 20px;">
+          <p class="font-rubik text-gray-500 text-sm leading-relaxed">Need a new Front later? You ask your agent from <code class="text-neon text-xs">00-mission-control</code> and it creates everything for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">CONTINUE ↓</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 6 — HANDOFF -->
+<section class="slide bg-darker px-8 py-16 relative overflow-hidden">
+  <div class="top-line" style="background: #086274;"></div>
+  <div class="max-w-5xl mx-auto w-full">
+    <p class="phase-tag">PHASE 06 of 06</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white uppercase leading-none mb-4">Handoff</h2>
+    <p class="font-rubik text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+      Routing is finished. Your agent is mapped to everything it needs. This is where your system goes live for real.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+      <div class="card card-teal p-6">
+        <p class="kicker mb-3" style="color:#1BD3B1;">TOPICS CONNECTED</p>
+        <p class="font-rubik text-gray-300 text-sm leading-relaxed">Each Telegram topic is routed to its workspace folder. Your agent knows where each conversation belongs.</p>
+      </div>
+      <div class="card p-6">
+        <p class="kicker text-gray-500 mb-3">DM BECOMES SUPPORT</p>
+        <p class="font-rubik text-gray-300 text-sm leading-relaxed">The direct chat you used for first contact stays available — but the Forum is now your primary operating surface.</p>
+      </div>
+      <div class="card p-6">
+        <p class="kicker text-gray-500 mb-3">YOU'RE IN COMMAND</p>
+        <p class="font-rubik text-gray-300 text-sm leading-relaxed">From <code class="text-neon text-xs">00-mission-control</code> you can request new Fronts, shift priorities, and direct the agent going forward.</p>
+      </div>
+    </div>
+    <div class="card p-8 flex flex-col md:flex-row gap-6 items-center" style="border-color:#1BD3B1; background: rgba(27,211,177,0.03);">
+      <div class="flex-1">
+        <p class="font-anton text-5xl text-neon mb-3">Ready for Work.</p>
+        <p class="font-rubik text-gray-400 leading-relaxed">The setup loop has no loops. You started with the minimum. We built the rest together. Your agent knows what you need and how you operate.</p>
+      </div>
+      <div class="text-center md:text-right flex-shrink-0">
+        <p class="kicker text-gray-600 mb-2">NEXT STEP</p>
+        <a href="./client-preflight-checklist.html" class="link-pill" style="font-size:0.9rem; padding: 8px 20px;">↗ OPEN YOUR CHECKLIST</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

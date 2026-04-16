@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding OpenClaw — Pulso IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=Jersey+10&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#111111',
+            darker: '#0a0a0a',
+            surface: '#1a1a1a',
+            neon: '#ADFC40',
+            teal: '#086274',
+            turq: '#1BD3B1',
+            purple: '#381542',
+          },
+          fontFamily: {
+            anton: ['Anton', 'sans-serif'],
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            jersey: ['Jersey 10', 'monospace'],
+            rubik: ['Rubik', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    .slide { scroll-snap-align: start; min-height: 100vh; }
+    body { margin: 0; background: #0a0a0a; color: #e0e0e0; }
+    .slide-number { font-family: 'Jersey 10', monospace; }
+    .deck-grid { display: grid; gap: 2px; }
+    .glow-dot { width: 12px; height: 12px; border-radius: 50%; background: #ADFC40; animation: glow-pulse 2s ease-in-out infinite; }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 4px rgba(173,252,64,0.6); }
+      50% { box-shadow: 0 0 16px rgba(173,252,64,0.9); }
+    }
+    .card-brutalist { border: 2px solid #333; background: #1a1a1a; }
+    .card-brutalist:hover { border-color: #ADFC40; }
+    .tier-indicator { width: 4px; min-height: 100%; }
+    .flow-arrow { color: #ADFC40; font-family: 'Jersey 10', monospace; font-size: 1.5rem; }
+    .file-icon { font-family: 'Jersey 10', monospace; font-size: 2rem; color: #ADFC40; }
+    .comp-col { border: 2px solid #333; }
+    .comp-col.highlighted { border-color: #ADFC40; background: rgba(173,252,64,0.04); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 01 • COVER                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center items-center bg-darker px-8 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-neon"></div>
+    <p class="slide-number text-neon text-lg mb-6 tracking-widest">COVER // 01</p>
+    <h1 class="font-anton text-6xl md:text-8xl text-white text-center uppercase leading-none mb-6">
+      What is<br/>OpenClaw?
+    </h1>
+    <p class="font-grotesk text-xl md:text-2xl text-gray-400 text-center max-w-2xl mb-10 leading-relaxed">
+      Your own AI operating system, running on your own machine.<br/>Always on. Always private. Always yours.
+    </p>
+    <div class="flex items-center gap-3">
+      <div class="glow-dot"></div>
+      <span class="font-jersey text-neon text-lg tracking-wider">SYSTEM ACTIVE</span>
+    </div>
+    <div class="absolute bottom-8 font-jersey text-gray-600 text-sm tracking-widest">SCROLL TO CONTINUE ↓</div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 02 • THE 3 LEVELS                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-16">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">COMPARISON // 02</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-12">The 3 Levels</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Level 1 -->
+        <div class="comp-col p-6 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-gray-500"></div>
+            <span class="font-jersey text-gray-500 text-sm tracking-wider">LEVEL 01</span>
+          </div>
+          <h3 class="font-grotesk text-xl font-bold text-white mb-3">Regular Chatbot</h3>
+          <p class="font-rubik text-gray-400 text-sm mb-6 leading-relaxed">ChatGPT, Gemini, Claude — you open a browser, type a question, get an answer. No memory between sessions. No initiative. No connection to your systems.</p>
+          <div class="mt-auto space-y-2">
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No persistent memory</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No autonomous action</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No system integration</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No scheduled tasks</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✓</span> Available via browser</div>
+          </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="comp-col p-6 flex flex-col" style="border-color:#086274;">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-teal"></div>
+            <span class="font-jersey text-teal text-sm tracking-wider">LEVEL 02</span>
+          </div>
+          <h3 class="font-grotesk text-xl font-bold text-white mb-3">OpenClaw (Basic)</h3>
+          <p class="font-rubik text-gray-400 text-sm mb-6 leading-relaxed">An AI agent living on your computer. It has memory, personality, tools, and can act autonomously. You chat via Telegram, WhatsApp, or any channel.</p>
+          <div class="mt-auto space-y-2">
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Persistent memory</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Multi-channel (Telegram, etc.)</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Cron jobs + heartbeat</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Skills + tools</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> Requires setup knowledge</div>
+          </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="comp-col highlighted p-6 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="glow-dot" style="width:12px;height:12px;"></div>
+            <span class="font-jersey text-neon text-sm tracking-wider">LEVEL 03</span>
+          </div>
+          <h3 class="font-grotesk text-xl font-bold text-white mb-3">OpenClaw + Concierge</h3>
+          <p class="font-rubik text-gray-400 text-sm mb-6 leading-relaxed">Everything in Level 2, plus a guided setup, structured operating fronts, priority management, a mission control dashboard, and expert configuration.</p>
+          <div class="mt-auto space-y-2">
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Guided professional setup</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Operating fronts structure</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Priority matrix + intake</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Mission Control dashboard</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Expert concierge support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 02A • LEVEL 1 DETAIL — CHATBOT       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-16">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-gray-500 text-sm mb-4 tracking-widest">LEVEL 01 // DETAIL</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-12">Regular Chatbot</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- LEFT: Info card -->
+        <div class="comp-col p-6 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-gray-500"></div>
+            <span class="font-jersey text-gray-500 text-sm tracking-wider">LEVEL 01</span>
+          </div>
+          <h3 class="font-grotesk text-xl font-bold text-white mb-3">How it works</h3>
+          <p class="font-rubik text-gray-400 text-sm mb-6 leading-relaxed">You open a browser, type a question, get an answer. The model processes your text and returns a response. That's it. No memory, no files, no tools, no initiative. Every session starts from zero.</p>
+          <div class="mt-auto space-y-2">
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No persistent memory between sessions</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No autonomous action or initiative</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No tool execution or system access</div>
+            <div class="flex items-center gap-2 text-sm text-gray-500"><span>✕</span> No scheduled or background tasks</div>
+            <div class="flex items-center gap-2 text-sm text-gray-400"><span>✓</span> Instant access via browser</div>
+          </div>
+          <div class="mt-6 p-3 border border-gray-800 bg-darker">
+            <p class="font-jersey text-gray-600 text-xs tracking-wider mb-1">COMPLEXITY</p>
+            <div class="flex gap-1 mb-2">
+              <div class="w-8 h-2 bg-gray-500 rounded-sm"></div>
+              <div class="w-8 h-2 bg-gray-800 rounded-sm"></div>
+              <div class="w-8 h-2 bg-gray-800 rounded-sm"></div>
+              <div class="w-8 h-2 bg-gray-800 rounded-sm"></div>
+              <div class="w-8 h-2 bg-gray-800 rounded-sm"></div>
+            </div>
+            <p class="font-rubik text-gray-600 text-xs">Zero setup. Zero configuration. Zero operational depth.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Diagram — simple request/response -->
+        <div class="flex flex-col items-center justify-center gap-4 py-6">
+          <!-- User bubble -->
+          <div class="w-full max-w-sm border-2 border-gray-700 bg-surface p-4 text-center">
+            <p class="font-jersey text-gray-400 text-xs tracking-wider mb-1">YOU</p>
+            <div class="bg-darker border border-gray-800 p-3 text-left mb-3">
+              <p class="font-rubik text-gray-400 text-sm">"Help me with my Q4 budget"</p>
+            </div>
+            <p class="font-rubik text-gray-600 text-xs">Browser interface (ChatGPT, Gemini, Claude)</p>
+          </div>
+
+          <div class="flex flex-col items-center gap-1">
+            <div class="flow-arrow">↓</div>
+            <p class="font-jersey text-gray-600 text-xs tracking-wider">REQUEST (API)</p>
+          </div>
+
+          <!-- LLM -->
+          <div class="w-full max-w-sm border-2 border-gray-600 bg-surface p-5 text-center">
+            <p class="font-jersey text-gray-400 text-xs tracking-wider mb-2">LLM</p>
+            <p class="font-grotesk text-white font-bold text-lg">Language Model</p>
+            <p class="font-rubik text-gray-500 text-xs mt-2">Processes text input → produces text output</p>
+            <div class="mt-3 px-3 py-2 bg-darker border border-gray-800 text-left">
+              <p class="font-rubik text-gray-500 text-xs">No context about you. No memory of yesterday. No access to files or tools.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-1">
+            <div class="flow-arrow">↓</div>
+            <p class="font-jersey text-gray-600 text-xs tracking-wider">RESPONSE (TEXT)</p>
+          </div>
+
+          <!-- Answer -->
+          <div class="w-full max-w-sm border border-gray-800 bg-darker p-4 text-center">
+            <p class="font-jersey text-gray-600 text-xs tracking-wider mb-1">OUTPUT</p>
+            <p class="font-rubik text-gray-400 text-sm">"Here's a general template for a Q4 budget..."</p>
+            <p class="font-rubik text-gray-600 text-xs mt-2">Generic. No personalization. Ends here.</p>
+          </div>
+
+          <div class="mt-4 text-center">
+            <p class="font-jersey text-gray-600 text-xs tracking-wider">SESSION ENDS — EVERYTHING IS FORGOTTEN</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 02B • LEVEL 2 DETAIL — OPENCLAW      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-12">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">LEVEL 02 // DETAIL</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">OpenClaw (Basic)</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- LEFT: Info card -->
+        <div class="comp-col p-6 flex flex-col" style="border-color:#086274;">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-teal"></div>
+            <span class="font-jersey text-teal text-sm tracking-wider">LEVEL 02</span>
+          </div>
+          <h3 class="font-grotesk text-xl font-bold text-white mb-3">An agent, not a chatbot</h3>
+          <p class="font-rubik text-gray-400 text-sm mb-5 leading-relaxed">The LLM is now at the center of a full operating system. Memory, scheduled tasks, tool access, user knowledge, and communication channels all orbit around a single intelligence core running on your own hardware.</p>
+          <div class="space-y-2 mb-5">
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Persistent memory (daily + long-term)</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Heartbeat (autonomous periodic wake)</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Cron jobs (scheduled background tasks)</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> User profile + personality</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Browser & CLI control</div>
+            <div class="flex items-center gap-2 text-sm text-turq"><span>✓</span> Multi-channel gateways</div>
+          </div>
+          <div class="p-3 border border-gray-800 bg-darker">
+            <p class="font-jersey text-gray-600 text-xs tracking-wider mb-1">COMPLEXITY</p>
+            <div class="flex gap-1 mb-2">
+              <div class="w-8 h-2 bg-teal rounded-sm"></div>
+              <div class="w-8 h-2 bg-teal rounded-sm"></div>
+              <div class="w-8 h-2 bg-teal rounded-sm"></div>
+              <div class="w-8 h-2 bg-teal rounded-sm" style="opacity:0.5;"></div>
+              <div class="w-8 h-2 bg-gray-800 rounded-sm"></div>
+            </div>
+            <p class="font-rubik text-gray-500 text-xs">Medium-high. Powerful system, but the configuration layer to make it truly useful for a specific person is still missing.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Architecture diagram -->
+        <div class="flex flex-col items-center gap-2 py-2" style="font-size: 0.9em;">
+
+          <!-- Mac Mini / Server container -->
+          <div class="w-full border-2 border-gray-700 bg-surface p-4 relative">
+            <p class="font-jersey text-gray-500 text-xs tracking-wider mb-3 text-center">MAC MINI / SERVER — 24/7</p>
+
+            <!-- Top row: Channels feeding into gateway -->
+            <div class="grid grid-cols-3 gap-2 mb-2">
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-teal text-xs">TELEGRAM</p>
+                <p class="font-rubik text-gray-500" style="font-size:0.65rem;">Forum Topics</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-teal text-xs">WHATSAPP</p>
+                <p class="font-rubik text-gray-500" style="font-size:0.65rem;">Business API</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-teal text-xs">OTHER</p>
+                <p class="font-rubik text-gray-500" style="font-size:0.65rem;">Gateways</p>
+              </div>
+            </div>
+
+            <div class="flow-arrow text-center text-base">↓ messages in / responses out ↑</div>
+
+            <!-- Core LLM -->
+            <div class="border-2 border-teal bg-darker p-3 text-center my-2" style="background: rgba(8,98,116,0.08);">
+              <p class="font-jersey text-teal text-xs tracking-wider">CORE</p>
+              <p class="font-grotesk text-white font-bold">LLM Agent Runtime</p>
+              <p class="font-rubik text-gray-500" style="font-size:0.65rem;">OpenAI / Gemini / Claude API</p>
+            </div>
+
+            <div class="flow-arrow text-center text-base">↓ reads & writes ↑</div>
+
+            <!-- Surrounding systems -->
+            <div class="grid grid-cols-3 gap-2 mb-2">
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">MEMORY</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">daily / wiki</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">USER.md</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">identity</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">SOUL.md</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">personality</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2 mb-2">
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">HEARTBEAT</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">every 2h</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">CRON JOBS</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">scheduled</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">SKILLS</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">plugins</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">BROWSER</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">web control</p>
+              </div>
+              <div class="border border-gray-700 bg-darker p-2 text-center">
+                <p class="font-jersey text-turq" style="font-size:0.6rem;">CLI / TERMINAL</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">system commands</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-2">
+            <p class="font-jersey text-teal text-xs tracking-wider">EXPONENTIAL LEAP IN CAPABILITY</p>
+            <p class="font-rubik text-gray-600 text-xs mt-1">But who configures all of this for your needs?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 02C • LEVEL 3 DETAIL — CONCIERGE     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-12">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">LEVEL 03 // DETAIL</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">OpenClaw + Concierge</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- LEFT: Info card -->
+        <div class="comp-col highlighted p-6 flex flex-col">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="glow-dot" style="width:12px;height:12px;"></div>
+            <span class="font-jersey text-neon text-sm tracking-wider">LEVEL 03</span>
+          </div>
+          <h3 class="font-grotesk text-xl font-bold text-white mb-3">The bridge between you and the system</h3>
+          <p class="font-rubik text-gray-400 text-sm mb-5 leading-relaxed">We don't just install it — we configure it around your real needs, implement your first operating front, and make sure you understand how to expand the system on your own.</p>
+          <div class="space-y-2 mb-5">
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Client intake interview</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Priority matrix structured</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> First front fully implemented</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Heartbeat + cron configured</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Mission Control dashboard live</div>
+            <div class="flex items-center gap-2 text-sm text-neon"><span>✓</span> Knowledge transfer to expand</div>
+          </div>
+          <div class="p-3 border border-neon" style="background: rgba(173,252,64,0.04);">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-1">WHAT YOU GET</p>
+            <p class="font-rubik text-gray-400 text-xs leading-relaxed">A running system, tailored to your reality, with at least one active front. Plus the knowledge and structure to create additional fronts yourself.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Diagram — Concierge wrapping the system -->
+        <div class="flex flex-col items-center gap-3 py-2" style="font-size: 0.9em;">
+
+          <!-- You: the person -->
+          <div class="w-full border-2 border-gray-700 bg-surface p-3 text-center">
+            <p class="font-jersey text-gray-400 text-xs tracking-wider mb-1">YOU</p>
+            <p class="font-grotesk text-white font-bold text-sm">Your goals, priorities, and workflows</p>
+            <p class="font-rubik text-gray-600" style="font-size:0.65rem;">"I need to manage my real estate portfolio and automate reports"</p>
+          </div>
+
+          <div class="flex flex-col items-center gap-0">
+            <div class="flow-arrow text-base">↓</div>
+            <p class="font-jersey text-gray-600" style="font-size:0.6rem;">NEEDS & CONTEXT</p>
+          </div>
+
+          <!-- Concierge Layer -->
+          <div class="w-full border-2 border-neon p-4 relative" style="background: rgba(173,252,64,0.04);">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-3 text-center">CONCIERGE LAYER</p>
+
+            <div class="grid grid-cols-2 gap-2 mb-3">
+              <div class="border border-neon bg-darker p-2 text-center" style="border-color: rgba(173,252,64,0.3);">
+                <p class="font-jersey text-neon" style="font-size:0.6rem;">INTAKE</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">discover priorities</p>
+              </div>
+              <div class="border border-neon bg-darker p-2 text-center" style="border-color: rgba(173,252,64,0.3);">
+                <p class="font-jersey text-neon" style="font-size:0.6rem;">CONFIGURE</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">tailor the system</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mb-3">
+              <div class="border border-neon bg-darker p-2 text-center" style="border-color: rgba(173,252,64,0.3);">
+                <p class="font-jersey text-neon" style="font-size:0.6rem;">FIRST FRONT</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">fully implemented</p>
+              </div>
+              <div class="border border-neon bg-darker p-2 text-center" style="border-color: rgba(173,252,64,0.3);">
+                <p class="font-jersey text-neon" style="font-size:0.6rem;">TEACH</p>
+                <p class="font-rubik text-gray-400" style="font-size:0.6rem;">expand on your own</p>
+              </div>
+            </div>
+
+            <div class="flow-arrow text-center text-base">↓ translates into ↓</div>
+
+            <!-- OpenClaw system (compact) -->
+            <div class="border-2 border-teal bg-darker p-3 mt-2" style="background: rgba(8,98,116,0.06);">
+              <p class="font-jersey text-teal text-xs tracking-wider mb-2 text-center">OPENCLAW SYSTEM (ON YOUR MAC MINI)</p>
+              <div class="grid grid-cols-4 gap-1">
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">LLM</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">MEMORY</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">CRON</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">TOOLS</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">SKILLS</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">FRONTS</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">HEART</p>
+                </div>
+                <div class="border border-gray-800 p-1 text-center">
+                  <p class="font-jersey text-turq" style="font-size:0.5rem;">GATEWAY</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-0">
+            <div class="flow-arrow text-base">↓</div>
+            <p class="font-jersey text-gray-600" style="font-size:0.6rem;">RESPONDS VIA YOUR CHANNELS</p>
+          </div>
+
+          <!-- Result -->
+          <div class="w-full border border-gray-700 bg-surface p-3 text-center">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">RESULT</p>
+            <p class="font-rubik text-gray-400 text-sm">A running, personalized agent — with at least one front active and the knowledge to grow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 03 • HOW IT WORKS                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">CONCEPT // 03</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">How it works</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-xl">The Gateway runs on your Mac Mini. Everything connects to it. Your data never leaves your machine.</p>
+
+      <div class="flex flex-col items-center gap-3">
+        <!-- User layer -->
+        <div class="card-brutalist p-4 w-full max-w-lg text-center">
+          <span class="font-jersey text-neon text-xs tracking-wider">YOU</span>
+          <p class="font-grotesk text-white font-bold mt-1">Send a message on Telegram</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+
+        <!-- Channel layer -->
+        <div class="card-brutalist p-4 w-full max-w-lg text-center">
+          <span class="font-jersey text-teal text-xs tracking-wider">CHANNEL</span>
+          <p class="font-grotesk text-white font-bold mt-1">Telegram Forum Topic</p>
+          <p class="font-rubik text-gray-500 text-sm mt-1">Each topic = one operating front</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+
+        <!-- Gateway -->
+        <div class="p-5 w-full max-w-lg text-center border-2 border-neon bg-surface">
+          <span class="font-jersey text-neon text-xs tracking-wider">GATEWAY</span>
+          <p class="font-anton text-white text-2xl mt-1">OpenClaw Engine</p>
+          <p class="font-rubik text-gray-500 text-sm mt-1">ws://127.0.0.1:18789 — your Mac Mini</p>
+        </div>
+        <div class="flow-arrow">↓</div>
+
+        <!-- Agent layer -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 w-full max-w-lg">
+          <div class="card-brutalist p-3 text-center">
+            <span class="font-jersey text-gray-500 text-xs">AGENT</span>
+            <p class="font-grotesk text-sm text-white mt-1">Pi Runtime</p>
+          </div>
+          <div class="card-brutalist p-3 text-center">
+            <span class="font-jersey text-gray-500 text-xs">FILES</span>
+            <p class="font-grotesk text-sm text-white mt-1">Workspace</p>
+          </div>
+          <div class="card-brutalist p-3 text-center">
+            <span class="font-jersey text-gray-500 text-xs">MEMORY</span>
+            <p class="font-grotesk text-sm text-white mt-1">Wiki + Daily</p>
+          </div>
+          <div class="card-brutalist p-3 text-center">
+            <span class="font-jersey text-gray-500 text-xs">TOOLS</span>
+            <p class="font-grotesk text-sm text-white mt-1">Browser, Cron</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 04 • THE OPERATING FILES             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">FILES // 04</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">The operating files</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-2xl">These markdown files define who the agent is, what it knows, and how it behaves. They live in your workspace folder.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="card-brutalist p-5 transition-all" style="border-color: #086274;">
+          <div class="file-icon mb-2">⚙️</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">AGENTS.md</h3>
+          <p class="font-rubik text-gray-400 text-sm mt-2 leading-relaxed">The system prompt. Defines what the agent can do, which tools it can use, and the rules it must follow. This is its operating manual.</p>
+        </div>
+        <div class="card-brutalist p-5 transition-all" style="border-color: #086274;">
+          <div class="file-icon mb-2">📜</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">SOUL.md</h3>
+          <p class="font-rubik text-gray-400 text-sm mt-2 leading-relaxed">The agent's personality and voice. Defines how it communicates: formal or casual, brief or detailed, its name and its tone.</p>
+        </div>
+        <div class="card-brutalist p-5 transition-all">
+          <div class="file-icon mb-2">👤</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">USER.md</h3>
+          <p class="font-rubik text-gray-400 text-sm mt-2 leading-relaxed">Your profile. Who you are, your preferences, your context. The agent reads this to personalize every interaction to you.</p>
+        </div>
+        <div class="card-brutalist p-5 transition-all">
+          <div class="file-icon mb-2">🧠</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">MEMORY.md</h3>
+          <p class="font-rubik text-gray-400 text-sm mt-2 leading-relaxed">Long-term durable memory. Key facts, decisions, and context the agent should always remember across sessions.</p>
+        </div>
+        <div class="card-brutalist p-5 transition-all">
+          <div class="file-icon mb-2">💓</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">HEARTBEAT.md</h3>
+          <p class="font-rubik text-gray-400 text-sm mt-2 leading-relaxed">Standing orders. The list of things the agent should always check when it wakes up on its own — like a morning routine.</p>
+        </div>
+        <div class="card-brutalist p-5 transition-all">
+          <div class="file-icon mb-2">🌙</div>
+          <h3 class="font-grotesk font-bold text-white text-lg">DREAMS.md</h3>
+          <p class="font-rubik text-gray-400 text-sm mt-2 leading-relaxed">Nightly consolidation. The agent reviews its day, extracts insights, and prepares context for tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 05 • SKILLS                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">SKILLS // 05</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">The skills system</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-2xl">Skills are pluggable instruction sets that teach the agent how to perform specific tasks. They live in <span class="font-jersey text-neon">skills/&lt;name&gt;/SKILL.md</span>.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="space-y-4">
+          <h3 class="font-grotesk font-bold text-white text-lg">How skills work</h3>
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">01 — DEFINITION</p>
+            <p class="font-rubik text-gray-400 text-sm">Each skill has a SKILL.md file with frontmatter (name, description) and instructions the agent follows.</p>
+          </div>
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">02 — SCOPE</p>
+            <p class="font-rubik text-gray-400 text-sm">Skills are global to the workspace. They're available to the agent across all fronts and conversations.</p>
+          </div>
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">03 — SOURCES</p>
+            <p class="font-rubik text-gray-400 text-sm">Skills come from three places: bundled (built-in), managed (from ClawHub registry), or workspace (custom, written by you).</p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-grotesk font-bold text-white text-lg">Example skills you'd use</h3>
+          <div class="card-brutalist p-4 flex items-start gap-3">
+            <span class="font-jersey text-neon text-xl">📊</span>
+            <div>
+              <p class="font-grotesk font-bold text-white text-sm">/daily-brief</p>
+              <p class="font-rubik text-gray-500 text-xs mt-1">"Send me a summary of my emails, calendar, and pending tasks every morning at 8 AM"</p>
+            </div>
+          </div>
+          <div class="card-brutalist p-4 flex items-start gap-3">
+            <span class="font-jersey text-neon text-xl">📑</span>
+            <div>
+              <p class="font-grotesk font-bold text-white text-sm">/create-presentation</p>
+              <p class="font-rubik text-gray-500 text-xs mt-1">"Build a slide deck from a rough outline or a set of bullet points"</p>
+            </div>
+          </div>
+          <div class="card-brutalist p-4 flex items-start gap-3">
+            <span class="font-jersey text-neon text-xl">🔍</span>
+            <div>
+              <p class="font-grotesk font-bold text-white text-sm">/research-topic</p>
+              <p class="font-rubik text-gray-500 text-xs mt-1">"Research a subject, compile sources, and write a structured report"</p>
+            </div>
+          </div>
+          <div class="card-brutalist p-4 flex items-start gap-3">
+            <span class="font-jersey text-neon text-xl">📝</span>
+            <div>
+              <p class="font-grotesk font-bold text-white text-sm">/draft-proposal</p>
+              <p class="font-rubik text-gray-500 text-xs mt-1">"Write a client proposal based on my notes and past templates"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 06 • MEMORY LAYERS                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">MEMORY // 06</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">Memory layers</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-2xl">The agent doesn't just chat and forget. It has a layered memory system that persists across sessions.</p>
+
+      <div class="flex flex-col gap-3 max-w-2xl mx-auto">
+        <div class="flex items-center gap-4">
+          <div class="tier-indicator bg-neon rounded-sm"></div>
+          <div class="card-brutalist p-5 flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="font-jersey text-neon text-sm tracking-wider">LAYER 01</span>
+              <span class="font-grotesk font-bold text-white">MEMORY.md</span>
+            </div>
+            <p class="font-rubik text-gray-400 text-sm">Durable long-term memory. Core facts, user preferences, critical decisions. Always loaded.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="tier-indicator bg-turq rounded-sm"></div>
+          <div class="card-brutalist p-5 flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="font-jersey text-turq text-sm tracking-wider">LAYER 02</span>
+              <span class="font-grotesk font-bold text-white">memory/daily</span>
+            </div>
+            <p class="font-rubik text-gray-400 text-sm">Daily memory files. One per day. What happened today — conversations, decisions, events.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="tier-indicator bg-purple rounded-sm" style="background:#8844aa;"></div>
+          <div class="card-brutalist p-5 flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="font-jersey text-purple text-sm tracking-wider" style="color:#8844aa;">LAYER 03</span>
+              <span class="font-grotesk font-bold text-white">DREAMS.md</span>
+            </div>
+            <p class="font-rubik text-gray-400 text-sm">Nightly consolidation. The agent reviews the day, extracts insights, and writes a summary for tomorrow.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="tier-indicator bg-teal rounded-sm"></div>
+          <div class="card-brutalist p-5 flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="font-jersey text-teal text-sm tracking-wider">LAYER 04</span>
+              <span class="font-grotesk font-bold text-white">memory-wiki</span>
+            </div>
+            <p class="font-rubik text-gray-400 text-sm">Knowledge base. Structured, searchable information. The agent builds this over time from interactions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 07 • HEARTBEAT + CRON                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">AUTOMATION // 07</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">Heartbeat vs. Cron</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-10 max-w-3xl">Both make the agent act without you asking. But they solve different problems.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- HEARTBEAT -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="glow-dot"></div>
+            <h3 class="font-grotesk font-bold text-white text-xl">Heartbeat</h3>
+          </div>
+          <div class="card-brutalist p-5">
+            <div class="p-3 mb-4 border border-neon" style="background: rgba(173,252,64,0.04);">
+              <p class="font-jersey text-neon text-xs tracking-wider mb-1">THINK OF IT AS</p>
+              <p class="font-rubik text-white text-sm font-bold">A morning routine checklist</p>
+              <p class="font-rubik text-gray-500 text-xs mt-1">Every 2 hours, the agent "wakes up" and reviews a standing list of things to check. It always runs the same checklist — you define what's on it.</p>
+            </div>
+            <p class="font-jersey text-gray-600 text-xs tracking-wider mb-2">WHAT IT READS → HEARTBEAT.md</p>
+            <div class="bg-darker p-4 border border-gray-800 font-mono text-sm text-gray-400">
+              <span class="text-neon"># Standing orders</span><br/>
+              - Check Telegram for unread messages<br/>
+              - Review pending tasks in all fronts<br/>
+              - Flag anything that needs my attention
+            </div>
+            <div class="mt-4 space-y-2">
+              <div class="flex items-center gap-2 text-sm text-gray-500"><span class="text-neon">●</span> Runs periodically (every 2h, 4h, etc.)</div>
+              <div class="flex items-center gap-2 text-sm text-gray-500"><span class="text-neon">●</span> Always the same checklist</div>
+              <div class="flex items-center gap-2 text-sm text-gray-500"><span class="text-neon">●</span> General-purpose awareness</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRON -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-jersey text-teal text-2xl">⏱</span>
+            <h3 class="font-grotesk font-bold text-white text-xl">Cron Jobs</h3>
+          </div>
+          <div class="card-brutalist p-5">
+            <div class="p-3 mb-4 border border-teal" style="background: rgba(8,98,116,0.06);">
+              <p class="font-jersey text-teal text-xs tracking-wider mb-1">THINK OF IT AS</p>
+              <p class="font-rubik text-white text-sm font-bold">Calendar appointments for the agent</p>
+              <p class="font-rubik text-gray-500 text-xs mt-1">Specific tasks that happen at exact times. "Every Monday at 9 AM, write a weekly report." "Every night at 3 AM, consolidate memory."</p>
+            </div>
+            <p class="font-jersey text-gray-600 text-xs tracking-wider mb-2">EXAMPLES</p>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3 border border-gray-800 bg-darker">
+                <div>
+                  <p class="font-grotesk text-white text-sm font-bold">Dreaming sweep</p>
+                  <p class="font-rubik text-gray-500 text-xs">Consolidate today's memory into insights</p>
+                </div>
+                <span class="font-rubik text-teal text-xs">Daily 3 AM</span>
+              </div>
+              <div class="flex items-center justify-between p-3 border border-gray-800 bg-darker">
+                <div>
+                  <p class="font-grotesk text-white text-sm font-bold">Weekly front review</p>
+                  <p class="font-rubik text-gray-500 text-xs">Generate status report per front</p>
+                </div>
+                <span class="font-rubik text-teal text-xs">Mon 9 AM</span>
+              </div>
+            </div>
+            <div class="mt-4 space-y-2">
+              <div class="flex items-center gap-2 text-sm text-gray-500"><span class="text-teal">●</span> Runs at exact date/time</div>
+              <div class="flex items-center gap-2 text-sm text-gray-500"><span class="text-teal">●</span> One specific task per job</div>
+              <div class="flex items-center gap-2 text-sm text-gray-500"><span class="text-teal">●</span> Can be per-front or global</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary bar -->
+      <div class="mt-8 p-4 border border-gray-800 bg-surface flex items-center gap-6 justify-center">
+        <div class="flex items-center gap-2"><div class="glow-dot" style="width:8px;height:8px;"></div><span class="font-grotesk text-white text-sm font-bold">Heartbeat</span><span class="font-rubik text-gray-500 text-sm">= "Check everything periodically"</span></div>
+        <span class="text-gray-700">|</span>
+        <div class="flex items-center gap-2"><span class="text-teal">⏱</span><span class="font-grotesk text-white text-sm font-bold">Cron</span><span class="font-rubik text-gray-500 text-sm">= "Do this specific thing at this exact time"</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 08 • OPERATING FRONTS                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 08A • YOUR OPERATING FRONTS           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center items-center bg-dark px-8 py-12">
+    <div class="max-w-4xl mx-auto w-full text-center">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">FRONTS // 08</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">Your operating fronts</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-2xl mx-auto">Every area of your life or work becomes a front — a dedicated stream with its own conversation, files, and context. You start with one and grow from there.</p>
+
+      <!-- Person node -->
+      <div class="inline-block border-2 border-neon bg-surface px-10 py-4 mb-4">
+        <p class="font-jersey text-neon text-sm tracking-wider">YOU</p>
+        <p class="font-grotesk text-white font-bold text-xl">Your life & work</p>
+      </div>
+      
+      <div class="flow-arrow text-base mb-4">↓ organizes into fronts ↓</div>
+
+      <!-- Front grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-left">
+        <div class="card-brutalist p-4 transition-all" style="border-color: #ADFC40;">
+          <p class="font-jersey text-neon" style="font-size:0.65rem;">WORK</p>
+          <p class="font-grotesk text-white text-sm font-bold mt-1">Real Estate Ops</p>
+          <p class="font-rubik text-gray-500 text-xs mt-1">Property management, contracts, tenant communication</p>
+        </div>
+        <div class="card-brutalist p-4 transition-all" style="border-color: #086274;">
+          <p class="font-jersey text-teal" style="font-size:0.65rem;">PROJECT</p>
+          <p class="font-grotesk text-white text-sm font-bold mt-1">Marketing Campaign</p>
+          <p class="font-rubik text-gray-500 text-xs mt-1">Content calendar, copy drafts, analytics reports</p>
+        </div>
+        <div class="card-brutalist p-4 transition-all" style="border-color: #1BD3B1;">
+          <p class="font-jersey text-turq" style="font-size:0.65rem;">PERSONAL</p>
+          <p class="font-grotesk text-white text-sm font-bold mt-1">Family & Admin</p>
+          <p class="font-rubik text-gray-500 text-xs mt-1">Appointments, school, household logistics</p>
+        </div>
+        <div class="card-brutalist p-4 transition-all">
+          <p class="font-jersey text-gray-500" style="font-size:0.65rem;">FINANCE</p>
+          <p class="font-grotesk text-white text-sm font-bold mt-1">Investment Portfolio</p>
+          <p class="font-rubik text-gray-500 text-xs mt-1">Market research, position tracking, weekly reports</p>
+        </div>
+        <div class="card-brutalist p-4 transition-all">
+          <p class="font-jersey text-gray-500" style="font-size:0.65rem;">SIDE PROJECT</p>
+          <p class="font-grotesk text-white text-sm font-bold mt-1">Podcast Production</p>
+          <p class="font-rubik text-gray-500 text-xs mt-1">Guest research, scripts, episode notes</p>
+        </div>
+        <!-- Blank slot -->
+        <div class="border-2 border-dashed border-gray-700 p-4 flex flex-col items-center justify-center text-center" style="min-height: 90px;">
+          <span class="font-jersey text-gray-600 text-3xl mb-1">+</span>
+          <p class="font-rubik text-gray-600 text-xs">Add a new front<br/>whenever you need one</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 08B • TELEGRAM: THE CONTROL SURFACE    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-12">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">INTERFACE // 08B</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">Telegram: The control surface</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-10 max-w-3xl">You don't need a new app. Telegram is your human-to-agent gateway. Each topic is a direct line to a specific front's context.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- LEFT: The 3 elements -->
+        <div>
+          <div class="border-2 border-neon bg-surface p-5 mb-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-4">SYSTEM ARCHITECTURE</p>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 border border-teal flex items-center justify-center flex-shrink-0">
+                  <span class="font-jersey text-teal text-xs">01</span>
+                </div>
+                <div>
+                  <p class="font-grotesk text-white font-bold text-sm">One Topic per Front</p>
+                  <p class="font-rubik text-gray-500 text-xs mt-1">Telegram Topics act as the isolated "chat rooms" for each project or life area.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 border border-teal flex items-center justify-center flex-shrink-0">
+                  <span class="font-jersey text-teal text-xs">02</span>
+                </div>
+                <div>
+                  <p class="font-grotesk text-white font-bold text-sm">Mapped Project Folders</p>
+                  <p class="font-rubik text-gray-500 text-xs mt-1">The system links your Telegram Topic ID to a physical folder on your Mac Mini disk.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 border border-teal flex items-center justify-center flex-shrink-0">
+                  <span class="font-jersey text-teal text-xs">03</span>
+                </div>
+                <div>
+                  <p class="font-grotesk text-white font-bold text-sm">Automated Context Loading</p>
+                  <p class="font-rubik text-gray-500 text-xs mt-1">When you type, the agent loads <span class="font-jersey text-gray-400">FRONT.md</span> and <span class="font-jersey text-gray-400">PROJECT.md</span> instantly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 border border-gray-800 bg-surface">
+            <p class="font-jersey text-gray-500 text-xs tracking-wider mb-1">NO "CONTEXT PROMPTING"</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">Unlike a standard chatbot, you never have to remind the agent what you're working on. The topic *is* the context.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: How it connects -->
+        <div class="flex flex-col items-center gap-3">
+          <div class="w-full border-2 border-gray-700 bg-surface p-4 text-center">
+            <p class="font-jersey text-gray-400 text-xs tracking-wider mb-1">YOU SEND A MESSAGE</p>
+            <div class="bg-darker border border-gray-800 p-3 text-left mt-2">
+              <p class="font-rubik text-gray-400 text-sm">"Summarize the latest lease terms from the real estate folder."</p>
+            </div>
+          </div>
+
+          <div class="flow-arrow text-base">↓</div>
+
+          <div class="w-full border border-gray-700 bg-surface p-4 text-center">
+            <p class="font-jersey text-teal text-xs tracking-wider mb-1">DETECTION & ROUTING</p>
+            <p class="font-rubik text-gray-500 text-xs mt-1">Gateway detects Topic ID → Loads matching files from your local disk.</p>
+          </div>
+
+          <div class="flow-arrow text-base">↓</div>
+
+          <div class="w-full border border-gray-700 bg-surface p-4 text-center">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-1">AGENT EXECUTION</p>
+            <p class="font-rubik text-gray-500 text-xs mt-1">It cross-references your current goal with your history and tools.</p>
+          </div>
+
+          <div class="mt-2 p-3 border border-gray-800 bg-darker text-center">
+            <p class="font-rubik text-gray-600 text-xs">Response sent back to the same topic in seconds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 09 • THE MAC MINI                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">HARDWARE // 09</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">The Mac Mini</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-2xl">Your AI lives on a dedicated machine. Always on, always local, always private.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <div class="card-brutalist p-5 transition-all">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">ALWAYS ON</p>
+            <p class="font-rubik text-gray-400 text-sm">The Mac Mini runs 24/7 with the lid closed (it has no lid). The agent is always available.</p>
+          </div>
+          <div class="card-brutalist p-5 transition-all">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">LOCAL FIRST</p>
+            <p class="font-rubik text-gray-400 text-sm">Your data stays on your machine. Memory, files, and workspace never leave your network.</p>
+          </div>
+          <div class="card-brutalist p-5 transition-all">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">REMOTE ACCESS</p>
+            <p class="font-rubik text-gray-400 text-sm">Tailscale lets you access the dashboard and control the agent from anywhere, securely.</p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="card-brutalist p-5 transition-all">
+            <p class="font-jersey text-teal text-xs tracking-wider mb-2">WORKSPACE ON DISK</p>
+            <p class="font-rubik text-gray-400 text-sm">All config files (SOUL, USER, MEMORY, fronts) are plain markdown on the filesystem. You can edit them with any text editor.</p>
+          </div>
+          <div class="card-brutalist p-5 transition-all">
+            <p class="font-jersey text-teal text-xs tracking-wider mb-2">NODE.JS GATEWAY</p>
+            <p class="font-rubik text-gray-400 text-sm">The Gateway is a lightweight Node.js process. Low resource usage, fast startup. Runs on port 18789.</p>
+          </div>
+          <div class="card-brutalist p-5 transition-all">
+            <p class="font-jersey text-teal text-xs tracking-wider mb-2">HEADLESS MODE</p>
+            <p class="font-rubik text-gray-400 text-sm">No monitor needed. The Mac Mini operates headless. The agent interacts through Telegram, not a screen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 11 • THE CONCIERGE LAYER             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-16">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">CONCIERGE // 11</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">The concierge layer</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-12 max-w-2xl">OpenClaw is the engine. We are the operational intelligence on top.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="border-2 border-neon bg-surface p-6">
+          <p class="font-jersey text-neon text-xs tracking-wider mb-4">WHAT WE DO</p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-neon mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-white font-bold text-sm">Guided setup</p>
+                <p class="font-rubik text-gray-500 text-xs mt-1">Preflight checklist, intake interview, baseline configuration</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-neon mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-white font-bold text-sm">Front structure</p>
+                <p class="font-rubik text-gray-500 text-xs mt-1">Create operating fronts, map to Telegram topics, set up canonical folders</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-neon mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-white font-bold text-sm">Priority management</p>
+                <p class="font-rubik text-gray-500 text-xs mt-1">Priority matrix, backlog management, next-action identification</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-neon mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-white font-bold text-sm">Mission Control</p>
+                <p class="font-rubik text-gray-500 text-xs mt-1">Visual dashboard for system health, front status, and file management</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-2 border-gray-700 p-6">
+          <p class="font-jersey text-gray-500 text-xs tracking-wider mb-4">WHAT OPENCLAW DOES (ALONE)</p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-gray-600 mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-gray-400 font-bold text-sm">Raw agent runtime</p>
+                <p class="font-rubik text-gray-600 text-xs mt-1">You install it, configure everything manually, and troubleshoot alone</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-gray-600 mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-gray-400 font-bold text-sm">Flat workspace</p>
+                <p class="font-rubik text-gray-600 text-xs mt-1">No front structure. All conversations in one place. No prioritization.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-gray-600 mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-gray-400 font-bold text-sm">No dashboard</p>
+                <p class="font-rubik text-gray-600 text-xs mt-1">CLI only. No visual system health. No front management UI.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-gray-600 mt-1">▸</span>
+              <div>
+                <p class="font-grotesk text-gray-400 font-bold text-sm">No guided onboarding</p>
+                <p class="font-rubik text-gray-600 text-xs mt-1">You read the docs and figure it out. No intake, no priority matrix.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE • MISSION CONTROL DASHBOARD            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-12">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">DASHBOARD // 12</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">Mission Control</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-8 max-w-3xl">A visual dashboard designed for humans — not engineers. See your fronts, automations, files, and system health at a glance. No command line needed.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <!-- Screenshot -->
+        <div class="md:col-span-2">
+          <div class="border-2 border-gray-700 overflow-hidden" style="border-radius: 4px;">
+            <img src="dashboard-screenshot.png" alt="Mission Control Dashboard" style="width: 100%; display: block;" />
+          </div>
+          <p class="font-rubik text-gray-600 text-xs mt-3 text-center">Mission Control V2 — running on your Mac Mini at 127.0.0.1:4177</p>
+        </div>
+
+        <!-- Features -->
+        <div class="space-y-3">
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">AT A GLANCE</p>
+            <p class="font-rubik text-gray-400 text-sm">See all your fronts, their status, and last activity in one table.</p>
+          </div>
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">AUTOMATION</p>
+            <p class="font-rubik text-gray-400 text-sm">Monitor your heartbeat and cron jobs. See when each one runs next.</p>
+          </div>
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">FILE EDITOR</p>
+            <p class="font-rubik text-gray-400 text-sm">Edit your operating files directly from the browser. No terminal needed.</p>
+          </div>
+          <div class="card-brutalist p-4">
+            <p class="font-jersey text-neon text-xs tracking-wider mb-2">SKILL LIBRARY</p>
+            <p class="font-rubik text-gray-400 text-sm">Browse and inspect all installed skills with full documentation.</p>
+          </div>
+          <div class="p-3 border border-gray-800 bg-darker">
+            <p class="font-rubik text-gray-600 text-xs">OpenClaw's native interface is a CLI terminal. This dashboard is part of the Concierge layer — built for clarity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE • RESPONSIBILITY & REALITY             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-12">
+    <div class="max-w-4xl mx-auto w-full">
+      <p class="slide-number text-amber-500 text-sm mb-4 tracking-widest">REALITY CHECK // 13</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-4">Responsibility & Reality</h2>
+      <p class="font-rubik text-gray-400 text-lg mb-10 max-w-3xl">AI is the new frontier. It is powerful, but it is not magic. It requires a balanced approach between trust and oversight.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- Technical Reality -->
+        <div class="space-y-6">
+          <div class="card-brutalist p-5" style="border-color: #f59e0b;">
+            <p class="font-jersey text-amber-500 text-xs tracking-wider mb-2">A MOVING TARGET</p>
+            <p class="font-grotesk text-white font-bold text-lg mb-2">The industry is in its infancy</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">Everything is changing constantly. Models (GPT, Claude) are updated monthly. Open-source systems like OpenClaw evolve weekly. Sometimes, updates break things. Models occasionally hallucinate or fail to follow logic.</p>
+          </div>
+          <div class="p-4 border border-gray-800 bg-surface">
+            <p class="font-jersey text-gray-500 text-xs tracking-wider mb-2">OUR ROLE</p>
+            <p class="font-rubik text-gray-400 text-sm">We handle the technical friction. You shouldn't have to navigate this uncertainty alone. When something breaks or changes, we are there to recalibrate and fix.</p>
+          </div>
+        </div>
+
+        <!-- Ethical/Operational Reality -->
+        <div class="space-y-6">
+          <div class="card-brutalist highlighted p-5" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.05);">
+            <p class="font-jersey text-amber-500 text-xs tracking-wider mb-2">THE MANDATE</p>
+            <p class="font-grotesk text-white font-bold text-lg mb-2">Human in the Loop</p>
+            <p class="font-rubik text-gray-400 text-sm leading-relaxed">This is a collaboration, not an abdication. Decisions regarding your **finances**, your **reputation**, or **outward-facing communications** should never be left entirely to an agent.</p>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-amber-500 mt-1">●</span>
+              <p class="font-rubik text-gray-400 text-sm">Review critical emails before they are sent.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-amber-500 mt-1">●</span>
+              <p class="font-rubik text-gray-400 text-sm">Verify financial summaries and reports.</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-amber-500 mt-1">●</span>
+              <p class="font-rubik text-gray-400 text-sm">**The human always takes the last decision.**</p>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 border border-amber-900 bg-dark text-center">
+            <p class="font-jersey text-amber-500 text-sm tracking-widest">TRUST BUT VERIFY</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE • CLOSE                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="slide flex flex-col justify-center items-center bg-dark px-8 relative">
+    <div class="absolute top-0 left-0 w-full h-1 bg-neon"></div>
+    <p class="slide-number text-neon text-lg mb-8 tracking-widest">CLOSE</p>
+    <h2 class="font-anton text-5xl md:text-7xl text-white text-center uppercase leading-none mb-6">
+      Ready to<br/>start?
+    </h2>
+    <p class="font-rubik text-gray-400 text-xl text-center max-w-xl mb-10 leading-relaxed">
+      One Mac Mini. One agent. One structured workspace.<br/>Every front organized. Every task tracked. Every decision remembered.
+    </p>
+    <div class="flex items-center gap-4">
+      <div class="glow-dot"></div>
+      <span class="font-jersey text-neon text-xl tracking-wider">SYSTEM READY</span>
+    </div>
+    <div class="mt-16 text-center">
+      <a href="https://josecormane.com" target="_blank" rel="noopener noreferrer" class="font-jersey text-gray-500 text-sm tracking-widest hover:text-neon transition-colors" style="text-decoration: none;">JOSECORMANE.COM</a>
+      <p class="font-rubik text-gray-700 text-xs mt-2">Built on OpenClaw · Concierge Service</p>
+    </div>
+  </section>
+
+</body>
+</html>

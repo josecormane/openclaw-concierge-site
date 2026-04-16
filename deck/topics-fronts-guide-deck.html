@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How To Add Topics And Fronts — OpenClaw Concierge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=Jersey+10&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { dark: '#111111', darker: '#0a0a0a', surface: '#1a1a1a', neon: '#ADFC40', teal: '#086274' },
+      fontFamily: { anton: ['Anton', 'sans-serif'], grotesk: ['Space Grotesk', 'sans-serif'], jersey: ['Jersey 10', 'monospace'], rubik: ['Rubik', 'sans-serif'] }
+    }}};
+  </script>
+  <style>
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body { margin: 0; background: #0a0a0a; color: #e0e0e0; }
+    .slide { min-height: 100vh; scroll-snap-align: start; }
+    .slide-number { font-family: 'Jersey 10', monospace; }
+    .glow-dot { width: 12px; height: 12px; border-radius: 9999px; background: #ADFC40; animation: glow-pulse 2s ease-in-out infinite; }
+    @keyframes glow-pulse { 0%,100%{ box-shadow: 0 0 4px rgba(173,252,64,.6);} 50%{ box-shadow: 0 0 16px rgba(173,252,64,.9);} }
+    .card { border: 2px solid #333333; background: #1a1a1a; }
+    .soft { border: 1px solid #2b2b2b; background: rgba(255,255,255,.02); }
+    .kicker { font-family: 'Jersey 10', monospace; letter-spacing: .18em; }
+    .row { display: flex; gap: 12px; align-items: flex-start; }
+    .mark { color: #ADFC40; font-family: 'Jersey 10', monospace; font-size: 1rem; margin-top: 2px; }
+    .warn { color: #f4b860; font-family: 'Jersey 10', monospace; font-size: 1rem; margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+  <section class="slide flex flex-col justify-center items-center bg-darker px-8 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-neon"></div>
+    <p class="slide-number text-neon text-lg mb-6 tracking-widest">GUIDE // 01</p>
+    <h1 class="font-anton text-6xl md:text-8xl text-white text-center uppercase leading-none mb-6">Add New<br/>Topics &amp; Fronts</h1>
+    <p class="font-grotesk text-xl md:text-2xl text-gray-400 text-center max-w-3xl mb-10 leading-relaxed">The official flow is now conversational: new topic, first message, bootstrap questions, front created.</p>
+    <div class="flex items-center gap-3"><div class="glow-dot"></div><span class="font-jersey text-neon text-lg tracking-wider">NO TERMINAL FOR THE CLIENT</span></div>
+    <div class="absolute bottom-8 font-jersey text-gray-600 text-sm tracking-widest">SCROLL TO CONTINUE ↓</div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">PRINCIPLE // 02</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">A New Front Is Still 3 Things</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card p-6"><p class="kicker text-gray-500 text-sm mb-3">TELEGRAM</p><h3 class="font-grotesk text-2xl text-white font-bold mb-3">Topic</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">The conversation surface for one operating area.</p></div>
+        <div class="card p-6" style="border-color:#086274;"><p class="kicker text-teal text-sm mb-3">WORKSPACE</p><h3 class="font-grotesk text-2xl text-white font-bold mb-3">Folder</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">The structured operating memory with files, backlog, outputs, reports, data, and scripts.</p></div>
+        <div class="card p-6" style="border-color:#ADFC40;"><p class="kicker text-neon text-sm mb-3">REGISTRY</p><h3 class="font-grotesk text-2xl text-white font-bold mb-3">Mapping</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">The fronts registry is the source of truth that connects topic to folder.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">FLOW // 03</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">The Official Client Flow</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <div class="card p-5"><p class="font-anton text-4xl text-neon mb-3">01</p><p class="font-grotesk text-lg font-bold text-white mb-2">Create the topic</p><p class="font-rubik text-sm text-gray-400">The client opens a new Telegram forum topic.</p></div>
+        <div class="card p-5"><p class="font-anton text-4xl text-neon mb-3">02</p><p class="font-grotesk text-lg font-bold text-white mb-2">Send the first message</p><p class="font-rubik text-sm text-gray-400">The first message gives the agent an entry point for that unmapped topic.</p></div>
+        <div class="card p-5"><p class="font-anton text-4xl text-neon mb-3">03</p><p class="font-grotesk text-lg font-bold text-white mb-2">Confirm new front</p><p class="font-rubik text-sm text-gray-400">The agent confirms whether this topic should become a new operating front.</p></div>
+        <div class="card p-5"><p class="font-anton text-4xl text-neon mb-3">04</p><p class="font-grotesk text-lg font-bold text-white mb-2">Answer bootstrap questions</p><p class="font-rubik text-sm text-gray-400">The agent asks only the missing setup questions.</p></div>
+        <div class="card p-5" style="border-color:#086274;"><p class="font-anton text-4xl text-neon mb-3">05</p><p class="font-grotesk text-lg font-bold text-white mb-2">Front created</p><p class="font-rubik text-sm text-gray-400">The system registers the front and confirms it is visible from Mission Control.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">QUESTIONS // 04</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">What The Agent Should Ask</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <p class="kicker text-neon text-sm mb-4">MINIMUM CANVAS</p>
+          <div class="space-y-4">
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">What should this front be called?</p></div>
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">What is the main objective?</p></div>
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">What kind of outputs should it produce?</p></div>
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">What inputs or sources should it use?</p></div>
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">Are there any constraints, style rules, or boundaries?</p></div>
+          </div>
+        </div>
+        <div class="card p-6">
+          <p class="kicker text-gray-500 text-sm mb-4">IMPORTANT</p>
+          <p class="font-rubik text-sm text-gray-400 leading-relaxed mb-4">The user should not need to write all of this in one perfect prompt. The skill should guide the conversation and ask only what is missing.</p>
+          <p class="font-rubik text-sm text-gray-500 leading-relaxed">This keeps front creation natural and makes the system feel like an operating assistant instead of a technical setup ritual.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">OUTCOME // 05</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">What Happens After The Interview</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card p-6">
+          <p class="kicker text-gray-500 text-sm mb-4">SYSTEM ACTIONS</p>
+          <ul class="space-y-3 font-rubik text-sm text-gray-300">
+            <li>Create the front folder.</li>
+            <li>Create `FRONT.md`, `PROJECT.md`, and `OPERATIONS.md`.</li>
+            <li>Create `outputs/`, `reports/`, `data/`, and `scripts/`.</li>
+            <li>Register the topic-to-folder mapping in `mission-control/fronts.yaml`.</li>
+          </ul>
+        </div>
+        <div class="card p-6" style="border-color:#ADFC40;">
+          <p class="kicker text-neon text-sm mb-4">CLIENT CONFIRMATION</p>
+          <ul class="space-y-3 font-rubik text-sm text-gray-300">
+            <li>The agent confirms that the front now exists.</li>
+            <li>The agent confirms that it is visible from Mission Control.</li>
+            <li>The topic can now be used as a normal operating front.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">MISTAKES // 06</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">What To Avoid</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="soft p-6">
+          <p class="kicker text-gray-500 text-sm mb-4">DON'T</p>
+          <div class="space-y-4">
+            <div class="row"><span class="warn">[!]</span><p class="font-rubik text-sm text-gray-300">Ask the client to use the terminal for normal front creation.</p></div>
+            <div class="row"><span class="warn">[!]</span><p class="font-rubik text-sm text-gray-300">Expect a perfectly formatted prompt with all fields filled in advance.</p></div>
+            <div class="row"><span class="warn">[!]</span><p class="font-rubik text-sm text-gray-300">Treat an unmapped topic as a fully operational front before bootstrapping it.</p></div>
+          </div>
+        </div>
+        <div class="soft p-6">
+          <p class="kicker text-neon text-sm mb-4">DO</p>
+          <div class="space-y-4">
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">Use the first message in the new topic as the bootstrap entry point.</p></div>
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">Ask only the missing setup questions.</p></div>
+            <div class="row"><span class="mark">[+]</span><p class="font-rubik text-sm text-gray-300">Confirm that the front is created and visible in Mission Control.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

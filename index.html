@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenClaw Concierge</title>
+    <style>
+      :root { --bg:#0c0c0c; --panel:#151515; --border:#2a2a2a; --text:#f3f3f3; --muted:#9b9b9b; --neon:#adfc40; --teal:#1bd3b1; }
+      * { box-sizing:border-box; }
+      body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(circle at top left, rgba(173,252,64,.08), transparent 28%), var(--bg); color:var(--text); }
+      .wrap { max-width:1080px; margin:0 auto; padding:56px 24px 80px; }
+      .eyebrow { color:var(--neon); font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; margin:0 0 12px; }
+      h1 { margin:0 0 12px; font-size:clamp(42px,8vw,84px); line-height:.95; text-transform:uppercase; }
+      .lead { max-width:760px; font-size:18px; line-height:1.6; color:var(--muted); margin:0 0 40px; }
+      .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+      .card { display:block; color:inherit; text-decoration:none; background:var(--panel); border:1px solid var(--border); border-radius:18px; padding:22px 20px; transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+      .card:hover { transform:translateY(-2px); border-color:rgba(173,252,64,.45); box-shadow:0 14px 40px rgba(0,0,0,.24); }
+      .tag { display:inline-block; margin-bottom:10px; color:var(--teal); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+      .card h2 { margin:0 0 10px; font-size:26px; line-height:1.05; }
+      .card p { margin:0; color:var(--muted); line-height:1.6; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <p class="eyebrow">OpenClaw Concierge</p>
+      <h1>Presentations</h1>
+      <p class="lead">Public presentation set for explaining the Concierge model, client setup, and the operating structure around OpenClaw.</p>
+      <div class="grid">
+        <a class="card" href="./deck/openclaw-explained-deck.html"><span class="tag">General</span><h2>Understanding OpenClaw</h2><p>General explanatory presentation for what OpenClaw is and how the system is meant to be used.</p></a>
+        <a class="card" href="./deck/client-preflight-checklist-deck.html"><span class="tag">Client</span><h2>Setup &amp; Onboarding</h2><p>Client-facing checklist for preflight, setup day expectations, and baseline requirements.</p></a>
+        <a class="card" href="./deck/concierge-onboarding-deck.html"><span class="tag">Concierge</span><h2>Concierge Onboarding</h2><p>Commercial overview of the Concierge service and its operating model.</p></a>
+        <a class="card" href="./deck/topics-fronts-guide-deck.html"><span class="tag">Operations</span><h2>Topics &amp; Fronts Guide</h2><p>How users should create and bootstrap new Telegram topics and operating fronts.</p></a>
+      </div>
+    </main>
+  </body>
+</html>

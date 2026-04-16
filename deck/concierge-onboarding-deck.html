@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenClaw Concierge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Jersey+10&family=Rubik:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neon: "#ADFC40",
+              teal: "#086274",
+              turquoise: "#1BD3B1",
+              purple: "#381542",
+              dark: "#111111",
+              light: "#F4F4F4",
+            },
+            fontFamily: {
+              headline: ["Anton", "sans-serif"],
+              body: ["Rubik", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
+              pixel: ["Jersey 10", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        margin: 0;
+        background: #111111;
+        overflow: hidden;
+      }
+      .deck {
+        height: 100vh;
+        width: 100vw;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+      }
+      .slide-wrap {
+        height: 100vh;
+        width: 100vw;
+        scroll-snap-align: start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      .slide {
+        width: min(1400px, 100%);
+        aspect-ratio: 16 / 9;
+        max-height: 90vh;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.46);
+      }
+      .slide::before {
+        content: "PULSO IA";
+        position: absolute;
+        left: 1.4rem;
+        bottom: 1.1rem;
+        padding: 0.2rem 0.8rem;
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(17, 17, 17, 0.9);
+        font-family: "Jersey 10", monospace;
+        font-size: 1.4rem;
+        letter-spacing: 0.08em;
+        z-index: 50;
+      }
+      .slide::after {
+        content: "JOSE CORMANE";
+        position: absolute;
+        right: 1.4rem;
+        bottom: 1.1rem;
+        padding: 0.2rem 0.8rem;
+        background: rgba(17, 17, 17, 0.95);
+        color: #adfc40;
+        border: 2px solid rgba(173, 252, 64, 0.9);
+        font-family: "Jersey 10", monospace;
+        font-size: 1.4rem;
+        letter-spacing: 0.08em;
+        z-index: 50;
+      }
+      .panel {
+        border: 2px solid rgba(17, 17, 17, 0.92);
+        box-shadow: 0 16px 28px rgba(17, 17, 17, 0.16);
+      }
+      .pixel {
+        font-family: "Jersey 10", monospace;
+        letter-spacing: 0.08em;
+        line-height: 0.95;
+      }
+    </style>
+  </head>
+  <body class="font-body text-dark">
+    <main class="deck">
+      <section class="slide-wrap">
+        <div class="slide bg-neon p-12 flex flex-col justify-between">
+          <div class="flex items-center justify-between border-b-4 border-dark pb-5">
+            <div class="bg-white px-5 py-2 border-4 border-dark rounded-full flex items-center gap-3">
+              <div class="w-4 h-4 rounded-full bg-teal"></div>
+              <span class="font-display font-bold tracking-widest">OPENCLAW CONCIERGE</span>
+            </div>
+            <span class="pixel text-[2rem] bg-dark text-neon px-4 py-1">COVER // 01</span>
+          </div>
+          <div class="flex flex-col justify-center gap-6 py-8">
+            <h1 class="font-headline text-[8rem] uppercase leading-[0.9]">
+              FROM BOT<br />TO OPERATING<br />SYSTEM
+            </h1>
+            <div class="flex flex-wrap gap-4 items-center">
+              <span class="bg-teal text-white text-3xl px-7 py-3 border-4 border-dark font-bold uppercase">
+                setup + discovery + mission control
+              </span>
+              <span class="pixel text-[2rem]">FOR MAC MINI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-turquoise p-12 flex flex-col">
+          <div class="flex justify-between items-center border-b-4 border-dark pb-4">
+            <h2 class="font-headline text-[5.2rem] uppercase leading-[0.9]">The distinction</h2>
+            <span class="pixel text-[2rem]">THESIS // 02</span>
+          </div>
+          <div class="grid grid-cols-2 gap-8 mt-10 flex-grow">
+            <article class="panel bg-white p-8 flex flex-col justify-between">
+              <div>
+                <p class="pixel text-[2rem] text-teal mb-5">WE DO NOT SELL</p>
+                <h3 class="font-headline text-5xl uppercase leading-[0.92] mb-4">
+                  another chat with tools
+                </h3>
+              </div>
+              <p class="text-2xl leading-relaxed font-medium">
+                A bot that only chats and occasionally touches the computer leaves value on the table.
+              </p>
+            </article>
+            <article class="panel bg-dark text-white p-8 flex flex-col justify-between">
+              <div>
+                <p class="pixel text-[2rem] text-neon mb-5">WE DO SELL</p>
+                <h3 class="font-headline text-5xl uppercase leading-[0.92] mb-4">
+                  delegable operating fronts
+                </h3>
+              </div>
+              <p class="text-2xl leading-relaxed font-medium">
+                Each front has a topic, folder, backlog, outputs, and useful memory. That is what
+                makes the system scalable.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-white p-12 flex flex-col">
+          <div class="flex justify-between items-center border-b-4 border-dark pb-4">
+            <h2 class="font-headline text-[5rem] uppercase leading-[0.9]">What we ask from the client</h2>
+            <span class="pixel text-[2rem] text-teal">PRECHECK // 03</span>
+          </div>
+          <div class="grid grid-cols-2 gap-6 mt-8 flex-grow">
+            <article class="panel bg-neon p-8">
+              <p class="pixel text-[2rem] mb-4">MACHINE</p>
+              <h3 class="font-headline text-4xl uppercase mb-4">Mac mini ready</h3>
+              <p class="text-xl leading-relaxed">Admin access, updates done, remote support approved, and clear ownership of who operates the environment.</p>
+            </article>
+            <article class="panel bg-white p-8">
+              <p class="pixel text-[2rem] text-teal mb-4">ACCOUNTS</p>
+              <h3 class="font-headline text-4xl uppercase mb-4">email + OpenAI + Tailscale</h3>
+              <p class="text-xl leading-relaxed">Dedicated agent email, OpenAI OAuth for the primary model, and a Tailscale account created with that same operating identity.</p>
+            </article>
+            <article class="panel bg-purple text-white p-8">
+              <p class="pixel text-[2rem] text-neon mb-4">TELEGRAM</p>
+              <h3 class="font-headline text-4xl uppercase mb-4">bot + forum topics</h3>
+              <p class="text-xl leading-relaxed">BotFather, a forum-style supergroup, and the `00-mission-control` topic ready before the guided interview starts.</p>
+            </article>
+            <article class="panel bg-dark text-white p-8">
+              <p class="pixel text-[2rem] text-neon mb-4">OPERATING RULES</p>
+              <h3 class="font-headline text-4xl uppercase mb-4">browser + alignment</h3>
+              <p class="text-xl leading-relaxed">The agent uses its own browser profile, each front becomes its own topic and folder, and the client is available for the first discovery session inside the instance.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-dark text-white p-12 flex flex-col">
+          <div class="flex justify-between items-center border-b-4 border-neon pb-4">
+            <h2 class="font-headline text-[5rem] uppercase leading-[0.9]">Technical baseline</h2>
+            <span class="pixel text-[2rem] text-neon">STACK // 04</span>
+          </div>
+          <div class="grid grid-cols-2 gap-8 mt-8 flex-grow">
+            <div class="grid grid-cols-2 gap-5">
+              <article class="panel bg-neon text-dark p-6">
+                <p class="pixel text-[1.8rem] mb-3">MODEL</p>
+                <h3 class="font-headline text-4xl uppercase">OpenAI OAuth</h3>
+              </article>
+              <article class="panel bg-white text-dark p-6">
+                <p class="pixel text-[1.8rem] text-teal mb-3">CHANNEL</p>
+                <h3 class="font-headline text-4xl uppercase">Telegram forum</h3>
+              </article>
+              <article class="panel bg-purple p-6">
+                <p class="pixel text-[1.8rem] text-neon mb-3">ACCESS</p>
+                <h3 class="font-headline text-4xl uppercase">Tailscale</h3>
+              </article>
+              <article class="panel bg-teal p-6">
+                <p class="pixel text-[1.8rem] text-neon mb-3">MEMORY</p>
+                <h3 class="font-headline text-4xl uppercase">wiki + dreaming</h3>
+              </article>
+            </div>
+            <div class="flex flex-col justify-between">
+              <div class="panel bg-white text-dark p-8">
+                <p class="pixel text-[2rem] text-teal mb-4">SERVICE DECISION</p>
+                <p class="text-3xl leading-relaxed font-medium">
+                  In our baseline we keep the visible memory layer active:
+                  <strong>memory-core</strong>, <strong>memory-wiki</strong>,
+                  <strong>dreaming</strong>, and <strong>local embeddings</strong>.
+                </p>
+              </div>
+              <div class="panel bg-neon text-dark p-8">
+                <p class="text-2xl leading-relaxed font-medium">
+                  Gmail, Google Cloud, Drive, Calendar, and Ollama stay optional modules depending on
+                  the client's real front.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-light p-12 flex flex-col">
+          <div class="flex justify-between items-center border-b-4 border-dark pb-4">
+            <h2 class="font-headline text-[5rem] uppercase leading-[0.9]">Operating model</h2>
+            <span class="pixel text-[2rem] text-teal">ROUTING // 05</span>
+          </div>
+          <div class="grid grid-cols-[1.1fr_0.9fr] gap-8 mt-8 flex-grow items-stretch">
+            <div class="panel bg-dark text-white p-8 flex flex-col justify-between">
+              <div>
+                <p class="pixel text-[2rem] text-neon mb-4">INTERFACE</p>
+                <h3 class="font-headline text-5xl uppercase leading-[0.92] mb-5">
+                  each front is a topic
+                </h3>
+                <p class="text-2xl leading-relaxed">
+                  The user works where they already talk. We structure the system by topics, not by
+                  chaotic conversation threads.
+                </p>
+              </div>
+              <div class="text-xl text-neon font-bold">00-mission-control + 1 topic per front</div>
+            </div>
+            <div class="grid grid-rows-3 gap-5">
+              <article class="panel bg-white p-6">
+                <p class="pixel text-[1.8rem] text-teal mb-2">MAP</p>
+                <p class="text-2xl font-medium">`mission-control/fronts.yaml` stores the topic ↔ folder mapping.</p>
+              </article>
+              <article class="panel bg-neon p-6">
+                <p class="pixel text-[1.8rem] mb-2">FOLDER</p>
+                <p class="text-2xl font-medium">Each front lives in `fronts/&lt;slug&gt;/` with `FRONT`, `PROJECT`, `OPERATIONS`, outputs, and reports.</p>
+              </article>
+              <article class="panel bg-purple text-white p-6">
+                <p class="pixel text-[1.8rem] text-neon mb-2">DASHBOARD</p>
+                <p class="text-2xl font-medium">Mission Control shows fronts, key files, skills, heartbeat, cron jobs, and recent changes.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-purple text-white p-12 flex flex-col justify-between">
+          <div class="flex justify-between items-center border-b-4 border-neon pb-4">
+            <h2 class="font-headline text-[5rem] uppercase leading-[0.9]">Visible memory</h2>
+            <span class="pixel text-[2rem] text-neon">MEMORY // 06</span>
+          </div>
+          <div class="grid grid-cols-4 gap-5 mt-8">
+            <article class="panel bg-white text-dark p-6">
+              <p class="pixel text-[1.8rem] text-teal mb-3">DURABLE</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">MEMORY.md</h3>
+              <p class="text-lg leading-relaxed">Facts, decisions, and rules that should survive.</p>
+            </article>
+            <article class="panel bg-neon text-dark p-6">
+              <p class="pixel text-[1.8rem] mb-3">DAILY</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">memory/day</h3>
+              <p class="text-lg leading-relaxed">Recent notes, observations, and operating signals.</p>
+            </article>
+            <article class="panel bg-dark p-6">
+              <p class="pixel text-[1.8rem] text-neon mb-3">REVIEW</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">DREAMS.md</h3>
+              <p class="text-lg leading-relaxed">Human-readable surface for reviewing consolidation and patterns.</p>
+            </article>
+            <article class="panel bg-teal p-6">
+              <p class="pixel text-[1.8rem] text-neon mb-3">KNOWLEDGE</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">memory-wiki</h3>
+              <p class="text-lg leading-relaxed">Visible knowledge layer with dashboards and navigation.</p>
+            </article>
+          </div>
+          <div class="panel bg-white text-dark p-8 mt-6">
+            <p class="text-3xl font-medium leading-relaxed">
+              The point is not to hide complexity. The point is for the client to understand
+              <strong>which file governs which behavior</strong> and operate the system with judgment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-white p-12 flex flex-col">
+          <div class="flex justify-between items-center border-b-4 border-dark pb-4">
+            <h2 class="font-headline text-[5rem] uppercase leading-[0.9]">How we deliver</h2>
+            <span class="pixel text-[2rem] text-teal">FLOW // 07</span>
+          </div>
+          <div class="grid grid-cols-5 gap-4 mt-8 flex-grow">
+            <article class="panel bg-neon p-5">
+              <p class="pixel text-[1.7rem] mb-3">01</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">preflight</h3>
+              <p class="text-lg leading-relaxed">Checklist, access, and conditions to start without friction.</p>
+            </article>
+            <article class="panel bg-white p-5">
+              <p class="pixel text-[1.7rem] text-teal mb-3">02</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">baseline</h3>
+              <p class="text-lg leading-relaxed">OpenClaw, Telegram, Tailscale, Mission Control, and visible memory.</p>
+            </article>
+            <article class="panel bg-dark text-white p-5">
+              <p class="pixel text-[1.7rem] text-neon mb-3">03</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">interview</h3>
+              <p class="text-lg leading-relaxed">Discovery inside the client's own instance.</p>
+            </article>
+            <article class="panel bg-teal text-white p-5">
+              <p class="pixel text-[1.7rem] text-neon mb-3">04</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">matrix</h3>
+              <p class="text-lg leading-relaxed">We choose the primary front and the quick win with the best return.</p>
+            </article>
+            <article class="panel bg-purple text-white p-5">
+              <p class="pixel text-[1.7rem] text-neon mb-3">05</p>
+              <h3 class="font-headline text-3xl uppercase mb-3">handoff</h3>
+              <p class="text-lg leading-relaxed">We leave one useful front running and a clear autonomy path.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-wrap">
+        <div class="slide bg-teal text-white p-14 flex flex-col justify-between border-8 border-neon">
+          <div class="flex justify-between items-start">
+            <div class="max-w-4xl">
+              <span class="pixel text-[2rem] text-neon">CLOSE // 08</span>
+              <h2 class="font-headline text-[6.2rem] uppercase leading-[0.9] mt-4">
+                we install judgment<br />not just software
+              </h2>
+            </div>
+            <div class="panel bg-white text-dark px-5 py-4 max-w-sm">
+              <p class="text-lg font-medium">
+                First deliverable: deck + checklist + baseline + Mission Control + first front.
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-6 items-end">
+            <div class="panel bg-neon text-dark p-6">
+              <p class="font-bold text-2xl uppercase">topic by topic</p>
+              <p class="text-lg leading-relaxed">It becomes clear where each front lives.</p>
+            </div>
+            <div class="panel bg-dark p-6">
+              <p class="font-bold text-2xl uppercase text-neon">file by file</p>
+              <p class="text-lg leading-relaxed">The client understands what governs the agent's behavior.</p>
+            </div>
+            <div class="panel bg-white text-dark p-6">
+              <p class="font-bold text-2xl uppercase">front by front</p>
+              <p class="text-lg leading-relaxed">Adoption stops being abstract and starts producing real results.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
