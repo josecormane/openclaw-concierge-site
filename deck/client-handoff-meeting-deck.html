@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Handoff Meeting — OpenClaw Concierge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Rubik:wght@400;500;600&family=Jersey+10&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#111111',
+            darker: '#0a0a0a',
+            surface: '#1a1a1a',
+            neon: '#ADFC40',
+            teal: '#086274',
+            turq: '#1BD3B1',
+            purple: '#381542',
+          },
+          fontFamily: {
+            anton: ['Anton', 'sans-serif'],
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            jersey: ['Jersey 10', 'monospace'],
+            rubik: ['Rubik', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body { margin: 0; background: #0a0a0a; color: #e0e0e0; }
+    .slide { min-height: 100vh; scroll-snap-align: start; }
+    .slide-number { font-family: 'Jersey 10', monospace; }
+    .kicker { font-family: 'Jersey 10', monospace; letter-spacing: 0.18em; text-transform: uppercase; }
+    .glow-dot { width: 12px; height: 12px; border-radius: 9999px; background: #ADFC40; animation: glow-pulse 2s ease-in-out infinite; }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 4px rgba(173,252,64,0.6); }
+      50% { box-shadow: 0 0 16px rgba(173,252,64,0.9); }
+    }
+    .card { border: 2px solid #333333; background: #1a1a1a; }
+    .soft { border: 1px solid #2b2b2b; background: rgba(255,255,255,0.02); }
+    .light-card { border: 2px solid #111111; background: #f4f4f4; color: #111111; }
+    .neon-card { border: 2px solid #111111; background: #ADFC40; color: #111111; }
+    .check-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid #2f2f2f; background: rgba(255,255,255,0.02); }
+    .check-icon { color: #ADFC40; font-family: 'Jersey 10', monospace; font-size: 1.1rem; line-height: 1; margin-top: 2px; }
+    .step { font-family: 'Anton', sans-serif; line-height: 0.85; letter-spacing: -0.03em; }
+    .screenshot-frame { border: 2px solid #333333; background: #0a0a0a; box-shadow: 0 18px 42px rgba(0,0,0,0.32); overflow: hidden; }
+    .screenshot-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+    .brand-chip { border: 1px solid #333333; background: rgba(255,255,255,0.03); color: #888888; }
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+  </style>
+</head>
+<body>
+
+  <section class="slide flex flex-col justify-center items-center bg-darker px-8 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-neon"></div>
+    <p class="slide-number text-neon text-lg mb-6 tracking-widest">HANDOFF // 01</p>
+    <h1 class="font-anton text-6xl md:text-8xl text-white text-center uppercase leading-none mb-6">
+      Your AI System<br/>Is Ready
+    </h1>
+    <p class="font-grotesk text-xl md:text-2xl text-gray-400 text-center max-w-3xl mb-10 leading-relaxed">
+      Today we connect the operating model, verify support access, and start the first client knowledge interview.
+    </p>
+    <div class="flex items-center gap-3">
+      <div class="glow-dot"></div>
+      <span class="font-jersey text-neon text-lg tracking-wider">OPENCLAW CONCIERGE</span>
+    </div>
+    <div class="absolute bottom-8 font-jersey text-gray-600 text-sm tracking-widest">SCROLL TO CONTINUE ↓</div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">BASELINE // 02</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">What Is Already Running</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="card p-5"><p class="kicker text-neon text-sm mb-3">01</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">OpenClaw Gateway</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Always-on agent runtime on the Mac mini.</p></div>
+        <div class="card p-5"><p class="kicker text-neon text-sm mb-3">02</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Concierge Workspace</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Structured folders, memory, skills, and front registry.</p></div>
+        <div class="card p-5"><p class="kicker text-neon text-sm mb-3">03</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Telegram Forum</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">The normal interface for conversations and fronts.</p></div>
+        <div class="card p-5"><p class="kicker text-neon text-sm mb-3">04</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Mission Control</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Dashboard for progress, services, fronts, and files.</p></div>
+        <div class="card p-5"><p class="kicker text-teal text-sm mb-3">05</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Tailscale</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Secure support access to the Mac mini.</p></div>
+        <div class="card p-5"><p class="kicker text-teal text-sm mb-3">06</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Agent Browser</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Dedicated Chrome profile for approved web tools.</p></div>
+        <div class="card p-5"><p class="kicker text-teal text-sm mb-3">07</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Obsidian Vault</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Human-readable Markdown plans for each front.</p></div>
+        <div class="card p-5" style="border-color:#ADFC40;"><p class="kicker text-neon text-sm mb-3">08</p><h3 class="font-grotesk text-xl font-bold text-white mb-3">Model Routing</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">GPT-5.4 primary, cheaper and local fallback paths.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">OPERATING MODEL // 03</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">You Do Not Operate The Mac Mini</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card p-8" style="border-color:#ADFC40;">
+          <p class="kicker text-neon text-sm mb-4">DAILY USE</p>
+          <h3 class="font-grotesk text-4xl text-white font-bold mb-5">Telegram is the interface.</h3>
+          <p class="font-rubik text-lg text-gray-300 leading-relaxed">Send text or voice notes. Use one topic per operating front. Use Mission Control for system-wide decisions.</p>
+        </div>
+        <div class="card p-8">
+          <p class="kicker text-teal text-sm mb-4">INFRASTRUCTURE</p>
+          <h3 class="font-grotesk text-4xl text-white font-bold mb-5">The Mac mini runs quietly.</h3>
+          <p class="font-rubik text-lg text-gray-300 leading-relaxed">It hosts OpenClaw, memory, browser control, Mission Control, and local services. It should stay powered and online.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-12">
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="grid grid-cols-1 md:grid-cols-[0.86fr_1.14fr] gap-8 items-center">
+        <div>
+          <p class="slide-number text-neon text-sm mb-4 tracking-widest">MISSION CONTROL // 04</p>
+          <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-8">The Dashboard Is The Map</h2>
+          <div class="space-y-4">
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">FRONTS</p><p class="font-rubik text-sm text-gray-300">Topic, folder, status, priority, and next action in one place.</p></div>
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">INTERVIEW PROGRESS</p><p class="font-rubik text-sm text-gray-300">Shows the same intake percentage the agent reports in chat.</p></div>
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">FILES</p><p class="font-rubik text-sm text-gray-300">Open front documents directly in Obsidian when needed.</p></div>
+          </div>
+        </div>
+        <div class="screenshot-frame h-[520px]">
+          <img src="./dashboard-screenshot.png" alt="Mission Control dashboard screenshot" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">TAILSCALE // 05</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">Secure Access When The Mac Mini Is Not Beside You</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="card p-6"><p class="step text-6xl text-neon mb-5">01</p><h3 class="font-grotesk text-2xl font-bold text-white mb-4">Install it on your devices.</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Computer first. Phone optional. This lets approved devices see the Mac mini securely.</p></div>
+        <div class="card p-6"><p class="step text-6xl text-neon mb-5">02</p><h3 class="font-grotesk text-2xl font-bold text-white mb-4">Use it for support access.</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Mission Control, remote checks, dashboard access, and operator troubleshooting.</p></div>
+        <div class="card p-6" style="border-color:#ADFC40;"><p class="step text-6xl text-neon mb-5">03</p><h3 class="font-grotesk text-2xl font-bold text-white mb-4">Do not confuse it with chat.</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">Telegram is still the daily interface. Tailscale is the secure network layer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">REMOTE SUPPORT // 06</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">Who Uses What</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="card p-7"><p class="kicker text-neon text-sm mb-4">CLIENT</p><h3 class="font-grotesk text-3xl font-bold text-white mb-5">Uses Telegram.</h3><ul class="space-y-3 font-rubik text-sm text-gray-300"><li>Mission Control topic</li><li>Dedicated front topics</li><li>Text and voice notes</li><li>No terminal for normal use</li></ul></div>
+        <div class="card p-7" style="border-color:#ADFC40;"><p class="kicker text-neon text-sm mb-4">OPERATOR</p><h3 class="font-grotesk text-3xl font-bold text-white mb-5">Uses Tailscale.</h3><ul class="space-y-3 font-rubik text-sm text-gray-300"><li>Health checks</li><li>Updates</li><li>Remote troubleshooting</li><li>Handoff validation</li></ul></div>
+        <div class="card p-7"><p class="kicker text-neon text-sm mb-4">SCREEN SHARING</p><h3 class="font-grotesk text-3xl font-bold text-white mb-5">Only when useful.</h3><ul class="space-y-3 font-rubik text-sm text-gray-300"><li>AnyDesk or macOS sharing</li><li>For visual support</li><li>Not required for daily use</li><li>Not a replacement for Tailscale</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">OBSIDIAN // 07</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">Readable Plans, Tables, And Notes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card p-7">
+          <p class="kicker text-neon text-sm mb-4">WHAT IT DOES</p>
+          <h3 class="font-grotesk text-3xl font-bold text-white mb-5">Opens the front documents as Markdown.</h3>
+          <p class="font-rubik text-sm text-gray-300 leading-relaxed mb-6">Every front has a purpose file, a project backlog, and operating notes. Obsidian makes those easy to read.</p>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="soft p-3 text-center font-jersey text-neon text-lg">FRONT.md</div>
+            <div class="soft p-3 text-center font-jersey text-neon text-lg">PROJECT.md</div>
+            <div class="soft p-3 text-center font-jersey text-neon text-lg">OPERATIONS.md</div>
+          </div>
+        </div>
+        <div class="card p-7" style="border-color:#086274;">
+          <p class="kicker text-teal text-sm mb-4">REQUIRED SETUP</p>
+          <h3 class="font-grotesk text-3xl font-bold text-white mb-5">The vault must be the OpenClaw workspace.</h3>
+          <p class="font-rubik text-sm text-gray-300 leading-relaxed mb-6">If Obsidian opens a generic "Obsidian Vault", the Mission Control links will not find the files.</p>
+          <div class="soft p-4"><p class="font-jersey text-neon text-lg mb-2">EXPECTED VAULT</p><p class="font-rubik text-sm text-gray-300">OpenClaw / workspaces / client</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">BROWSER CONTROL // 08</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">When There Is No API, Use The Web Product</h2>
+      <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-6">
+        <div class="card p-8" style="border-color:#ADFC40;">
+          <p class="kicker text-neon text-sm mb-4">DEDICATED AGENT BROWSER</p>
+          <h3 class="font-grotesk text-4xl text-white font-bold mb-5">The agent does not use your personal browser.</h3>
+          <p class="font-rubik text-lg text-gray-300 leading-relaxed">Approved accounts are signed into the agent browser profile. This keeps automation separate from normal personal browsing.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="soft p-6"><p class="kicker text-teal text-sm mb-3">API EXISTS</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">Use the API.</h3><p class="font-rubik text-sm text-gray-400">Best for reliable, repeatable workflows.</p></div>
+          <div class="soft p-6"><p class="kicker text-teal text-sm mb-3">NO NORMAL API</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">Use the browser.</h3><p class="font-rubik text-sm text-gray-400">Good for consumer or partner-restricted tools.</p></div>
+          <div class="soft p-6 md:col-span-2"><p class="kicker text-neon text-sm mb-3">PASSWORD RULE</p><h3 class="font-grotesk text-3xl font-bold text-white">Do not send passwords in chat. Sign in manually inside the agent browser.</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">CLIENT KNOWLEDGE INTERVIEW // 09</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">The First Real Work Is An Interview</h2>
+      <div class="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-6">
+        <div class="card p-7">
+          <h3 class="font-grotesk text-3xl font-bold text-white mb-6">The system needs to understand how your work actually runs.</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">WORK</p><p class="font-rubik text-sm text-gray-300">Recurring responsibilities, priorities, and current operating areas.</p></div>
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">SYSTEMS</p><p class="font-rubik text-sm text-gray-300">Tools, accounts, files, browser products, and access boundaries.</p></div>
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">CONSTRAINTS</p><p class="font-rubik text-sm text-gray-300">Sensitive data, approvals, style, timing, and risk tolerance.</p></div>
+            <div class="soft p-4"><p class="kicker text-teal text-sm mb-2">OPPORTUNITIES</p><p class="font-rubik text-sm text-gray-300">Candidate fronts, quick wins, and where automation can help first.</p></div>
+          </div>
+        </div>
+        <div class="card p-7" style="border-color:#ADFC40;">
+          <p class="kicker text-neon text-sm mb-5">HOW TO ANSWER</p>
+          <ul class="space-y-4 font-rubik text-lg text-gray-300 leading-relaxed">
+            <li>Write naturally.</li>
+            <li>Send voice notes if easier.</li>
+            <li>Add extra context any time.</li>
+            <li>If you remember something later, just say it.</li>
+          </ul>
+          <div class="soft p-4 mt-8"><p class="font-jersey text-neon text-lg">PROGRESS APPEARS IN CHAT AND MISSION CONTROL</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">OUTPUT // 10</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">What The Interview Creates</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div class="card p-5"><p class="step text-6xl text-neon mb-5">01</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">User profile</h3><p class="font-rubik text-sm text-gray-400">How you communicate, decide, work, and prioritize.</p></div>
+        <div class="card p-5"><p class="step text-6xl text-neon mb-5">02</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">Candidate fronts</h3><p class="font-rubik text-sm text-gray-400">Operating areas that deserve their own topic and folder.</p></div>
+        <div class="card p-5"><p class="step text-6xl text-neon mb-5">03</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">Priority map</h3><p class="font-rubik text-sm text-gray-400">Where impact, effort, access, and urgency intersect.</p></div>
+        <div class="card p-5"><p class="step text-6xl text-neon mb-5">04</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">Quick wins</h3><p class="font-rubik text-sm text-gray-400">The first useful automations or operating improvements.</p></div>
+        <div class="card p-5" style="border-color:#ADFC40;"><p class="step text-6xl text-neon mb-5">05</p><h3 class="font-grotesk text-2xl font-bold text-white mb-3">Access gaps</h3><p class="font-rubik text-sm text-gray-400">Accounts, browser logins, APIs, or files needed later.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-darker px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-teal text-sm mb-4 tracking-widest">SECOND MEETING // 11</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">After The Interview, We Choose The Next Move</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="card p-7"><p class="step text-7xl text-teal mb-6">A</p><h3 class="font-grotesk text-3xl text-white font-bold mb-4">Expand the interview</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">If the system found missing context, unclear ownership, or important access questions.</p></div>
+        <div class="card p-7" style="border-color:#ADFC40;"><p class="step text-7xl text-neon mb-6">B</p><h3 class="font-grotesk text-3xl text-white font-bold mb-4">Start one priority front</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">If the interview produced enough clarity to begin operating immediately.</p></div>
+        <div class="card p-7"><p class="step text-7xl text-teal mb-6">C</p><h3 class="font-grotesk text-3xl text-white font-bold mb-4">Create or reshape fronts</h3><p class="font-rubik text-sm text-gray-400 leading-relaxed">If the proposed front map needs correction before execution starts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center bg-dark px-8 py-14">
+    <div class="max-w-6xl mx-auto w-full">
+      <p class="slide-number text-neon text-sm mb-4 tracking-widest">NEW FRONTS // 12</p>
+      <h2 class="font-anton text-4xl md:text-5xl text-white uppercase mb-10">Later, New Work Gets A New Topic</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="card p-6"><p class="step text-6xl text-neon mb-5">01</p><h3 class="font-grotesk text-2xl text-white font-bold">Create a Telegram topic.</h3></div>
+        <div class="card p-6"><p class="step text-6xl text-neon mb-5">02</p><h3 class="font-grotesk text-2xl text-white font-bold">Write the first message there.</h3></div>
+        <div class="card p-6"><p class="step text-6xl text-neon mb-5">03</p><h3 class="font-grotesk text-2xl text-white font-bold">Let the agent bootstrap it.</h3></div>
+        <div class="card p-6" style="border-color:#ADFC40;"><p class="step text-6xl text-neon mb-5">04</p><h3 class="font-grotesk text-2xl text-white font-bold">Confirm it appears in Mission Control.</h3></div>
+      </div>
+      <div class="soft p-5">
+        <p class="font-grotesk text-2xl font-bold text-white">The client should not use the terminal or edit YAML to create normal operating fronts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide flex flex-col justify-center items-center bg-darker px-8 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-neon"></div>
+    <p class="slide-number text-neon text-lg mb-6 tracking-widest">TODAY'S CLOSE // 13</p>
+    <h2 class="font-anton text-6xl md:text-8xl text-white text-center uppercase leading-none mb-8">
+      Now We Let<br/>The System<br/>Interview You
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 max-w-5xl w-full mb-10">
+      <div class="soft p-4"><p class="font-jersey text-neon text-lg mb-2">01</p><p class="font-rubik text-sm text-gray-300">Confirm the Mac mini is online.</p></div>
+      <div class="soft p-4"><p class="font-jersey text-neon text-lg mb-2">02</p><p class="font-rubik text-sm text-gray-300">Install or accept Tailscale access.</p></div>
+      <div class="soft p-4"><p class="font-jersey text-neon text-lg mb-2">03</p><p class="font-rubik text-sm text-gray-300">Send one voice note test.</p></div>
+      <div class="soft p-4"><p class="font-jersey text-neon text-lg mb-2">04</p><p class="font-rubik text-sm text-gray-300">Reply: Start the interview.</p></div>
+    </div>
+    <p class="font-grotesk text-xl md:text-2xl text-gray-400 text-center max-w-4xl leading-relaxed">
+      The next meeting is a decision meeting: validate the proposed fronts, choose what to start, and decide whether more discovery is needed.
+    </p>
+  </section>
+
+</body>
+</html>
